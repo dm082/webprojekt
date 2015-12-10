@@ -1,0 +1,225 @@
+/* NAV BEGINN -------------------------------------------------------------------------------*/
+html body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.container {
+    background-color: #e6e6e6;
+    width: 100vw;
+    padding: 20px 0px;
+    position: fixed;
+    z-index: 2;
+}
+.nav ul li {
+    display:inline;
+    padding: 20px 20px;
+}
+
+.nav li a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #5a5a5a;
+    font-size: 12px;
+    font-weight: 300;
+    padding: 32px 20px;
+}
+/* Hover Effekt beim drübergehen*/
+.nav a:hover {
+    background-color: #c6c6c6;
+    opacity: 0.75;
+}
+/* Padding an den Seiten */
+.pull-right {
+    padding: 0px 200px 0px 0px;
+}
+
+.pull-left {
+    padding: 0px 0px 0px 200px;
+}
+
+/* Jumbotron BEGINN --------------------------------------------------*/
+.jumbotron {
+    height: 100vh; /* Viewport Height regelt die Größe des Blocks entsprechend dem Bildschirm*/
+    background-color: #002846;
+    margin-bottom: 0px;
+    background-image: url(https://images.unsplash.com/photo-1437419764061-2473afe69fc2?dpr=1.5&fit=crop&fm=jpg&h=875&ixlib=rb-0.3.5&q=66&w=1450);
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+
+}
+
+.jumbotron .claim {
+    color: #fff;
+    text-align: left;
+    padding-top: 15vh;
+    font-size: 80px;
+    line-height: 90px;
+    font-weight: 900;
+    width: 55vw;
+    height: 70vh;
+    padding-bottom: 5vh;
+    position: relative;
+    right: 6vw;
+
+}
+
+/* Von links werden die Unterstriche und die Farben gelöscht*/
+a {
+    text-decoration: none;
+}
+
+a:link {
+    text-decoration: none;
+}
+/*Button oben */
+.cta {
+    position: relative;
+    height: 60px;
+    text-align: center;
+    font-size: 22px;
+    color: white;
+    background: #28d8b3;
+    padding: 13px;
+    font-weight:600;
+    border-radius: 5px;
+    top: -5vh;
+    left: 15vh;
+}
+
+.cta:hover {
+    transition: all 0.6s ease 0s;
+    background: #fff none repeat scroll 0 0;
+    z-index: 1
+}
+
+#highlight {
+    color: yellow;
+}
+
+/* Testimonials */
+.testimonials{
+    height: 30vh;
+    background-color: #205379;
+}
+
+
+/* https://snap-photos.s3.amazonaws.com/img-thumbs/960w/VV0697QWMS.jpg */
+
+
+.testimonial {
+    font-size: 30px;
+    color: #efefef;
+    font-style: italic;
+    line-height:40px;
+    width: 60vw;
+    height: 20vh;
+    text-align: center;
+    position: relative;
+    top: 3vh;
+}
+
+.testimonials h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #f86867;
+    position: relative;
+    display: inline;
+    top: 2vh;
+}
+
+.quote  {
+    font-size: 150px;
+    font-style: italic;
+    line-height: 100px;
+    font-family: railway;
+    position: absolute;
+}
+
+.quote1 {
+    left: -4vw;
+    top:-3vh;
+}
+
+.quote2 {
+    position:absolute;
+    top: 12vh;
+    right: 4vw;
+}
+
+.author {
+    position: relative;
+    color: #fff;
+    font-size: 12px;
+    top: 0vh;
+    font-weight: bold;
+}
+
+/* About Teil */
+.about {
+    height: 30vh;
+    background-color: #fbfbfb;
+}
+
+.about h2 {
+    margin-top: 0;
+    color: #f86867;
+    position: relative;
+    top: 2vh;
+}
+.abouttext {
+    font-size: 30px;
+    color: #3f7894;
+    line-height:40px;
+    width: 60vw;
+    height: 20vh;
+    text-align: center;
+    position: relative;
+    top: 3vh;
+    font-weight: 400;
+}
+
+/* Registrieren-Feld*/
+.registrieren {
+    height: 60vh;
+    background-color: #99d3e7;
+}
+
+.registrieren input {
+
+    border-radius: 3px;
+    position: relative;
+    top: 10vh;
+    box-shadow: none;
+    background: #fff;
+    margin-top: 1vh;
+    border: none;
+
+}
+
+#vname, #nname{
+    width: 15.4vw;
+    height:5vh;
+}
+
+#nname {
+    position: relative;
+    right: 0;
+}
+#email {
+    width: 31vw;
+    height: 5vh;
+}
+
+#pw1 {
+    width: 31vw;
+    height: 5vh;
+}
+
+#pw2 {
+    width: 31vw;
+    height: 5vh;
+}
+
+
