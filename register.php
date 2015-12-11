@@ -16,10 +16,13 @@ if ($pw == $pw2)
         $secret_salt = "topsecretsalt";
         $salted_password = $secret_salt . $pw;
         $password_hash = hash('sha256', $salted_password);
+
+        echo "Gl&uuml;ckwunsch zur Registrierung";
     }
+
     else
     {
-        echo "Die Passwörter waren nicht identisch <a href=\"register.php\"></a>";
+        echo "Die Passw&ouml;rter waren nicht identisch <a href=\"register.php\"></a>";
     }
 
 // query
