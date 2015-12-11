@@ -16,7 +16,6 @@ catch (PDOException $p)
 }
 
 
-//hello
 ?>
 
 
