@@ -282,12 +282,27 @@ a:link {
 
 .facebook {
     color: #3b5998;
+    opacity: 0.75;
+}
+
+.facebook:hover {
+    opacity: 1;
 }
 
 .twitter {
-    color: #55acee;
+     color: #55acee;
+     opacity: 0.75;
+ }
+
+.twitter:hover {
+    opacity: 1;
 }
 
 .youtube {
     color: #c4302b;
+    opacity: 0.75;
+}
+
+.youtube:hover {
+    opacity: 1;
 }
