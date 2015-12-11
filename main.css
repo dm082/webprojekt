@@ -123,7 +123,7 @@ a:link {
 .testimonials h2 {
     margin-top: 0;
     margin-bottom: 0;
-    color: #f86867;
+    color: #fd6e6e;
     position: relative;
     display: inline;
     top: 2vh;
@@ -164,13 +164,13 @@ a:link {
 
 .about h2 {
     margin-top: 0;
-    color: #f86867;
+    color: #fd6e6e;
     position: relative;
     top: 2vh;
 }
 .abouttext {
     font-size: 30px;
-    color: #3f7894;
+    color: #002846;
     line-height:40px;
     width: 60vw;
     height: 20vh;
@@ -183,7 +183,7 @@ a:link {
 /* Registrieren-Feld*/
 .registrieren {
     height: 60vh;
-    background-color: #99d3e7;
+    background-color: #98d2e6;
 }
 
 .registrieren input {
@@ -195,6 +195,7 @@ a:link {
     background: #fff;
     margin-top: 1vh;
     border: none;
+    text-indent: 1vw;
 
 }
 
@@ -222,4 +223,60 @@ a:link {
     height: 5vh;
 }
 
+#rights {
+}
+
+#righttext{
+    position: relative;
+    top: 10vh;
+    left: 2vw;
+}
+
+#submit {
+    width: 20vw;
+    height: 5vh;
+    background-color: #fd6e6e;
+    font-weight: 800;
+    color: #fff;
+    font-size: 16px;
+    opacity: 0.9
+}
+
+#submit:hover {
+    opacity: 1;
+}
+
+/*-------------------------Footer---------------------------------------*/
+
+.footer {
+    background-color: #e6e6e6;
+    height: 35vh;
+}
+
+.footer-float {
+    width: 30vw;
+    float:left;
+    position: relative;
+    top: 10vh;
+}
+
+.footer-float ul {
+    list-style: none;
+}
+
+.credits {
+    position:relative;
+    top: 30vh;
+}
+
+.impressum {
+    position:relative;
+    top: 30vh;
+}
+
+.social {
+    display:inline;
+    float:left;
+    padding: 2vh;
+}
 
