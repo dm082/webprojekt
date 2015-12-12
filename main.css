@@ -242,6 +242,7 @@ a:link {
     opacity: 0.9
 }
 
+
 #submit:hover {
     opacity: 1;
 }
@@ -322,8 +323,11 @@ a:link {
     transition-property: color;
     -webkit-transition-duration: 0.3s;
     transition-duration: 0.3s;
+    border-radius: 5px;
+
 }
 .hvr-sweep-to-right:before {
+    border-radius: 5px;
     content: "";
     position: absolute;
     z-index: -1;
@@ -345,8 +349,10 @@ a:link {
 }
 .hvr-sweep-to-right:hover, .hvr-sweep-to-right:focus, .hvr-sweep-to-right:active {
     color: white;
+    border-radius: 5px;
 }
 .hvr-sweep-to-right:hover:before, .hvr-sweep-to-right:focus:before, .hvr-sweep-to-right:active:before {
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
+    border-radius: 5px;
 }
