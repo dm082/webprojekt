@@ -22,7 +22,7 @@ if ($pw == $pw2)
 
     else
     {
-        echo "Die Passw&ouml;rter waren nicht identisch <a href=\"register.php\"></a>";
+        echo "Die Passw&ouml;rter waren nicht identisch. <a href='index.html'>Zur&uuml;ck</a>";
     }
 
 // query
