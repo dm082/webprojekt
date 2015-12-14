@@ -1,12 +1,15 @@
 <!DOCTYPE html>
+<html>
 <head>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link href="main.css" rel="stylesheet">
-    <title></title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" async></script>
+    <title>Unser Projekt</title>
 </head>
 
 
+<body>
 
 <div>
     <div class="nav">
@@ -18,12 +21,12 @@
                 <li><a href="#">About</a></li>
                 <li><a href="#">Download</a></li>
                 <li><a href="#">Support</a></li>
-                <li><a href="#">Login</a></li>
+                <li><a href="loginsite.html">Login</a></li>
             </ul>
         </div>
     </div>
 </div>
-m
+
 <div class="jumbotron">
     <div>
         <p class="claim col-md-offset-4">Wir sind die einzige Cloud,<br>
@@ -40,9 +43,9 @@ m
     <h2 class="col-md-offset-5">Testimonials</h2>
     <p class=" col-md-offset-2 testimonial">
         <span class="quote1 quote">"</span>
-            Vintloud is the perfect match for Icebike.org.
-            Now people are telling us how great our site looks on all
-            platforms - and I'm telling them about the awesome support I got from WPZOOM.
+        Vintloud is the perfect match for Icebike.org.
+        Now people are telling us how great our site looks on all
+        platforms - and I'm telling them about the awesome support I got from WPZOOM.
         <span class="quote2 quote">"</span>
     </p>
     <small class="author col-md-offset-5">Kevin Jones - Rolling Stone Magazine</small>
@@ -59,27 +62,27 @@ m
 <!-------------------------------------Register---------------------------------------------------->
 <div class="registrieren">
     <form class="registrierungsformular col-md-offset-4" action="register.php" method="post">
-        <input id="vname" name="vorname" type="text" placeholder="Vorname">
-        <input id="nname" name="nachname" type="text" placeholder="Nachname"> <br>
-        <input id="email" name="email" type="email" placeholder="E-Mail"> <br>
-        <input id="pw1" name="passwort" type="password" placeholder="Passwort"> </br>
-        <input id="pw2" name="passwort2" type="password" placeholder="Passwort wiederholen"> </br>
-        <input id="rights" name="rights" type="checkbox" value="akzeptiert">
+        <input id="vname" name="vorname" type="text" placeholder="Vorname" required   maxlength="30">
+        <input id="nname" name="nachname" type="text" placeholder="Nachname" required maxlength="30"> <br/>
+        <input id="email" name="email" type="email" placeholder="E-Mail" required  maxlength="40"> <br/>
+        <input id="pw1" name="passwort" type="password" placeholder="Passwort" required  maxlength="40"> <br/>
+        <input id="pw2" name="passwort2" type="password" placeholder="Passwort wiederholen" required  maxlength="40"> <br/>
+        <input id="rights" name="rights" type="checkbox" value="akzeptiert" required  maxlength="40">
         <label id="righttext" for="rights">Ich trete all meine Rechte ab</label><br/>
-        <input id="submit" name="submit" class="col-md-offset-1 hvr-sweep-to-right" required type="submit">
+        <input id="submit" name="submit" class="hvr-sweep-to-right col-md-offset-1" type="submit">
     </form>
 </div>
 
 <!-------------------------------------Footer---------------------------------------------------->
 <div class="footer">
     <small class="credits col-md-offset-2">Credits 2015 @Team OMM</small>
-    <small class="impressum col-md-offset-6">Impressum</small>
+    <small class="impressum col-md-offset-6"><a href="#">Impressum</a></small>
     <div class="footer-container">
         <div class="footer-float">
             <ul>
-                <li>Impressum</li>
-                <li>AGB
-                <li>Credits 2015</li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Download</a></li>
+                <li><a href="#">Support</a></li>
             </ul>
         </div>
 
@@ -100,7 +103,6 @@ m
     </div>
 
 </div>
-<h1>hello world</h1>
 
 </body>
 </html>
