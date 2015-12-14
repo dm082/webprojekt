@@ -38,6 +38,7 @@ html body {
     padding: 0px 0px 0px 200px;
 }
 
+
 /* Jumbotron BEGINN --------------------------------------------------*/
 .jumbotron {
     height: 100vh; /* Viewport Height regelt die Größe des Blocks entsprechend dem Bildschirm*/
@@ -308,7 +309,7 @@ a:link {
     opacity: 1;
 }
 
-/*Hover Effekt beim Registrieren button */
+/*-------------------------Hover Effekt beim Registrieren button ---------------------*/
 .hvr-sweep-to-right {
     display: inline-block;
     vertical-align: middle;
@@ -356,3 +357,4 @@ a:link {
     transform: scaleX(1);
     border-radius: 5px;
 }
+
