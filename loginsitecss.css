@@ -51,6 +51,7 @@
     color: #212121;
     font-size: 24px;
     font-weight: 400;
+    box-shadow: none;
 }
 
 .card .input-container label {
@@ -110,6 +111,7 @@
 }
 
 .cardfooter a {
+    color: inherit;
     text-decoration: none;
     -webkit-transition: .3s ease;
     transition: .3s ease;

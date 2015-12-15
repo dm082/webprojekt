@@ -134,7 +134,7 @@ a:link {
     font-size: 150px;
     font-style: italic;
     line-height: 100px;
-    font-family: railway;
+    font-family: "Helvetica Neue";
     position: absolute;
 }
 
@@ -358,3 +358,15 @@ a:link {
     border-radius: 5px;
 }
 
+
+.testimonial, .abouttext,h2, small{
+    font-family: "Raleway";
+}
+
+h2 {
+    font-weight: 600;
+}
+
+.author {
+    font-weight: 400;
+}
