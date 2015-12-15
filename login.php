@@ -3,27 +3,41 @@
 session_start ();
 
 // Datenbankverbindung aufbauen
-include ("connection.php");
+// include ("connection.php");
 
 $email = $_POST["email"];
-$passwort = $_POST["passwort"];    //muss hier was verhashtes rein???
+$passwort = $_POST["passwort"];
 
-    $sqlabfrage = "SELECT email, passwort FROM user WHERE email LIKE '$email'";
-    $ergebnis = $db->query($sqlabfrage);
-    while($row = $ergebnis->fetch(PDO::FETCH_ASSOC)) {
-        echo $row['name'].'/'.$row['email'].'<br/>';      //muss noch umgeschrieben werden -- Siehe seine Folien php Grundlagen
+try{
+    include_once("userdata.php");
+    $db = new PDO($dsn, $db_user, $db_pass);
+    $sql = "SELECT email, passwort FROM User WHERE email LIKE '$email'";
 
+    $query = $db->prepare($sql);
+    $query->execute();
+    while ($result = $query->fetch(PDO::FETCH_ASSOC)){
+        $emailvergleich = $result["email"];
+        $pwvergleich = $result["passwort"];
     }
 
-// if($row->passwort == $passwort)
-// {
-//   $_SESSION["email"] = $email;
-//        echo "Login erfolgreich."
-//}
-//else
-//{
-//    echo "Benutzername und/oder Passwort falsch."
-//}
+}
+catch(PDOException $e){
+    echo "2:".$sql."</br>".$e->getMessage();
+    die();
+}
+
+$secret_salt = "topsecretsalt";
+$salted_password = $secret_salt . $passwort;
+$password_hash = hash('sha256', $salted_password);
+
+if($pwvergleich == $password_hash)
+{
+  $_SESSION["email"] = $email;
+       echo "Login erfolgreich. <br> <a href=\"login.html\" >Dein Profil</a>";
+}
+else
+{
+   echo "Benutzername und/oder Passwort falsch.";
+}
 
 ?>
- 

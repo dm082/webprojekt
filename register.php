@@ -3,7 +3,9 @@ session_start();     //Session starten
 ?>
 
 <?php
-include ("connection.php");   //DB Verbindung herstellen
+//include_once ("connection.php");   //DB Verbindung herstellen
+include_once("userdata.php");
+$db = new PDO($dsn, $db_user, $db_pass);
 
 $pw = $_POST["passwort"];
 $pw2 = $_POST["passwort2"];
