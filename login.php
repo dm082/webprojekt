@@ -3,14 +3,14 @@
 session_start ();
 
 // Datenbankverbindung aufbauen
-include ("connection.php");
+ include ("connection.php");
 
 $email = $_POST["email"];
 $passwort = $_POST["passwort"];
 
 try{
-    include_once("userdata.php");
-    $db = new PDO($dsn, $db_user, $db_pass);
+ //   include_once("userdata.php");
+ //   $db = new PDO($dsn, $db_user, $db_pass);
     $sql = "SELECT email, passwort FROM User WHERE email LIKE '$email'";
 
     $query = $db->prepare($sql);
@@ -37,7 +37,7 @@ if($pwvergleich == $password_hash)
 }
 else
 {
-   echo "Benutzername und/oder Passwort falsch. <br/> <a href='loginsite.html'>Zur&uuml;ck zum Login</a>";
+   echo "Benutzername und/oder Passwort falsch.";
 }
 
 ?>
