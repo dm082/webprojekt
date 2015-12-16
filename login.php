@@ -3,7 +3,7 @@
 session_start ();
 
 // Datenbankverbindung aufbauen
-// include ("connection.php");
+include ("connection.php");
 
 $email = $_POST["email"];
 $passwort = $_POST["passwort"];
@@ -37,7 +37,7 @@ if($pwvergleich == $password_hash)
 }
 else
 {
-   echo "Benutzername und/oder Passwort falsch.";
+   echo "Benutzername und/oder Passwort falsch. <br/> <a href='loginsite.html'>Zur&uuml;ck zum Login</a>";
 }
 
 ?>
