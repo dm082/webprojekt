@@ -11,6 +11,13 @@ $pw = $_POST["passwort"];
 $pw2 = $_POST["passwort2"];
 
 
+
+$sql= "SELECT MAX(userid) FROM User";
+$query = $db->prepare($sql);
+
+
+echo "$query";
+
 if ($pw == $pw2)
     {
         //$user_vorhanden = array();
@@ -22,6 +29,20 @@ if ($pw == $pw2)
         $password_hash = hash('sha256', $salted_password);
 
         echo "Gl&uuml;ckwunsch zur Registrierung";
+
+        $regid++;
+        if(!is_dir("uploads/$regid"))
+        {
+            mkdir("uploads/$regid", 0755, true);
+        }
+        else
+        {
+            echo "the folder members/$regid already exits!";
+        }
+
+
+
+
     }
 
     else
@@ -50,5 +71,3 @@ $db     = null;
 die();
 ?>
 
-<!-- für das Login: http://www.foxplex.com/sites/php-passwoerter-sicher-verschluesseln/
-http://www.webmasterpro.de/coding/article/php-sicherheit-passwoerter-sicher-speichern.html-->
