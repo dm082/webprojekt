@@ -33,7 +33,7 @@ $password_hash = hash('sha256', $salted_password);
 if($pwvergleich == $password_hash)
 {
   $_SESSION["email"] = $email;
-       echo "Login erfolgreich. <br> <a href='Uploadseeeeeite.html' >Zum Upload</a>";
+       echo "Login erfolgreich. <br> <a href='uploadseitee.html' >Zum Upload</a>";
 }
 else
 {
