@@ -1,8 +1,7 @@
 <?php
 session_start();
-?>
 
-echo "Favorite animal is " . $_SESSION["favanimal"] . ".";
+echo "Session Email is" . $_SESSION["email"] . ".";
 
 /*
  * 1. Auslesen von Pfad in SQL anhand der Email
