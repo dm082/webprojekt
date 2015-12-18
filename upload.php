@@ -1,28 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Dennis
- * Date: 17.12.2015
- * Time: 19:11
- */
+session_start();
+?>
 
-/**
-$_FILES['userfile']['name']
+echo "Favorite animal is " . $_SESSION["favanimal"] . ".";
 
-    The original name of the file on the client machine.
-$_FILES['userfile']['type']
-
-The mime type of the file, if the browser provided this information. An example would be "image/gif".
- * This mime type is however not checked on the PHP side and therefore don't take its value for granted.
-$_FILES['userfile']['size']
-
-    The size, in bytes, of the uploaded file.
-$_FILES['userfile']['tmp_name']
-
-    The temporary filename of the file in which the uploaded file was stored on the server.
-$_FILES['userfile']['error']
-    The error code associated with this file upload.
+/*
+ * 1. Auslesen von Pfad in SQL anhand der Email
+ * Speichern in uploads/pfad
+ *
+ *
  * */
+
 
 $target_dir = 'uploads/';
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);

@@ -9,61 +9,50 @@ include_once ("connection.php");   //DB Verbindung herstellen
 
 $pw = $_POST["passwort"];
 $pw2 = $_POST["passwort2"];
-
-
-
-$sql= "SELECT MAX(userid) FROM User";
-$query = $db->prepare($sql);
-
-
-echo "$query";
+$user_dir = md5($_POST["email"]); /* Es wird auf Basis der einmalige EMail ein Hashwert erzeugt*/
 
 if ($pw == $pw2)
     {
-        //$user_vorhanden = array();
-        //$passwort = md5($password);
+
 
         $pw = $_POST["passwort"];
         $secret_salt = "topsecretsalt";
         $salted_password = $secret_salt . $pw;
         $password_hash = hash('sha256', $salted_password);
 
-        echo "Gl&uuml;ckwunsch zur Registrierung";
+        echo "Gl&uuml;ckwunsch zur Registrierung <br /> ";
+        echo "<a href='loginsite.html'>Einloggen</a><br/>";
 
-        $regid++;
-        if(!is_dir("uploads/$regid"))
+        /*Es wird gecheckt ob der neue Ordner, bestehend aus dem Hashwert der Email bereits existiert
+        (Sehr unwarscheinlich) -> Falls es keinen gibt, wird einer erstellt */
+        if(!is_dir("uploads/$user_dir"))
         {
-            mkdir("uploads/$regid", 0755, true);
+            mkdir("uploads/$user_dir", 0755, true);
         }
         else
         {
-            echo "the folder members/$regid already exits!";
+            echo "Weiter zu ihrem Ordner";
         }
 
+        // Hier  wird die query ausgeführt und die Variablen in der Datenbank gespeichert.
+        $sql = "INSERT INTO User (vorname, nachname, email, passwort, passwort2, pfad) VALUES (:vorname,:nachname,:email,:passwort,:passwort2, :pfad)";
+        $query = $db->prepare($sql);
+        $query->execute(
+            array(
+                ':vorname'=>$_POST["vorname"],
+                ':nachname'=>$_POST["nachname"],
+                ':email'=>$_POST["email"],
+                ':passwort'=> $password_hash,
+                ':passwort2'=> $password_hash,
+                ':pfad' => $user_dir,
 
-
-
+            )
+        );
     }
-
     else
     {
         echo "Die Passw&ouml;rter waren nicht identisch. <a href='index.html'>Zur&uuml;ck</a>";
     }
-
-// query
-$sql = "INSERT INTO User (vorname, nachname, email, passwort, passwort2) VALUES (:vorname,:nachname,:email,:passwort,:passwort2)";
-$query = $db->prepare($sql);
-$query->execute(
-    array(
-        ':vorname'=>$_POST["vorname"],
-        ':nachname'=>$_POST["nachname"],
-        ':email'=>$_POST["email"],
-        ':passwort'=> $password_hash,
-        ':passwort2'=> $password_hash,
-    )
-
-
-);
 
 
 $db     = null;
