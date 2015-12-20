@@ -42,7 +42,7 @@ if ($uploadOk == 0) {
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-        echo "View your <a href='#'>files</a>";
+        echo "View your <a href='showuploads.php'>files</a>";
     } else {
         echo "Sorry, there was an error uploading your file.";
     }
