@@ -25,6 +25,9 @@ if ($_FILES["fileToUpload"]["size"] > 524288000) {
 }
 
 
+
+
+
 //------------------------------- Allow certain file formats-------------------------------------------
 /**
 if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"

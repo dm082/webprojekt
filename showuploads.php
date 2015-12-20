@@ -69,7 +69,7 @@ if (is_dir($dir)){
                         if($file != "." && $file != ".."){
                             $extension = pathinfo($file, PATHINFO_EXTENSION);
                             $size = filesize($dir.$file);
-                            $placeoffile = $dir.$file;
+                            $placeoffile = ($dir.$file);
                             echo("
                             <td><a href='$placeoffile'>filename: $file </a></td>
                             <td>$extension</td>
