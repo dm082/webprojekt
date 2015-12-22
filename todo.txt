@@ -1,0 +1,3 @@
+- Schöne MB-GB Zahlen einfügen anstatt Byte
+- Delete einfügen bei showuploads
+- Profil einfügen
