@@ -6,15 +6,22 @@ $directorywert = md5($_SESSION['email']);
 
 // Dateien werden in den jeweiligen Ordner basierend auf dem Email Hash abgelegt
 $target_dir = "uploads/$directorywert/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+// Mithilfe von preg_replace werden ungültige Zeichen, die zu Problemen führen können, ersetzt.
+$olduserfile = $_FILES["fileToUpload"]["name"];
+$middleuserfile = preg_replace ("([^\w\s\d\-_~,;:\[\]\(\).])", '', $olduserfile);
+$newuserfile = preg_replace('/\s+/', '_', $middleuserfile);
+
+
+$target_file = $target_dir . basename($newuserfile);
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 // Check if image file is a actual image or fake image
 
 
+
 // Check if file already exists
 if (file_exists($target_file)) {
-    echo "Sorry, file already exists.";
+    echo "The file already exists.<br/>";
     $uploadOk = 0;
 }
 
@@ -23,13 +30,6 @@ if ($_FILES["fileToUpload"]["size"] > 524288000) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
 }
-
-
-$string1 = "##Th##is is a ### test.##";
-$string2 = preg_replace("/#/", '', $string1);
-echo "<br/>$string1<br/>";
-echo "$string2<br/>";
-
 
 
 //------------------------------- Allow certain file formats-------------------------------------------
@@ -44,14 +44,16 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
 
 //------------------------------- Check if $uploadOk is set to 0 by an error ------------------------
 if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.";
+    echo "Therefore, your file was not uploaded.<br/>";
+    echo "View your <a href='showuploads.php'>files</a>";
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+        echo "The file ". basename($olduserfile). " has been uploaded.<br/>";
         echo "View your <a href='showuploads.php'>files</a>";
     } else {
-        echo "Sorry, there was an error uploading your file.";
+        echo "Sorry, there was an error uploading your file.<br/>";
+        echo "View your <a href='showuploads.php'>files</a>";
     }
 }
 ?>
