@@ -1,8 +1,6 @@
 <?php
 session_start();
-?>
 
-<?php
 
 $dsn    = "mysql::host=mars.iuk.hdm-stuttgart.de; dbname=u-kk111";
 

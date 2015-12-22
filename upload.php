@@ -25,6 +25,10 @@ if ($_FILES["fileToUpload"]["size"] > 524288000) {
 }
 
 
+$string1 = "##Th##is is a ### test.##";
+$string2 = preg_replace("/#/", '', $string1);
+echo "<br/>$string1<br/>";
+echo "$string2<br/>";
 
 
 

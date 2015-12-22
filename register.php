@@ -1,8 +1,8 @@
 <?php
 session_start();     //Session starten
-?>
 
-<?php
+
+
 include_once ("connection.php");   //DB Verbindung herstellen
 // include_once("userdata.php");
 // $db = new PDO($dsn, $db_user, $db_pass);
