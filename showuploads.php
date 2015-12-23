@@ -18,8 +18,30 @@ if( isset( $_SESSION['loggedin'] ) )
     echo "Session-Email:". ($_SESSION['email']. "<br/>");
 }
 
+// Lesbare Zahlen für "Größe"
 
-// Open a known directory, and proceed to read its contents
+function readablesize($bytes, $precision = 1)
+{
+    $kilobyte = 1024;
+    $megabyte = $kilobyte * 1024;
+    $gigabyte = $megabyte * 1024;
+
+    if (($bytes >= 0) && ($bytes < $kilobyte)) {
+        return $bytes . ' B';
+// Ist die Bytezahl größer oder gleich als $kilobyte? & ist die Bytezahl gleichzeitig kleiner als Megabyte?
+    } elseif (($bytes >= $kilobyte) && ($bytes < $megabyte)) {
+        return round($bytes / $kilobyte, $precision) . ' KB';
+
+    } elseif (($bytes >= $megabyte) && ($bytes < $gigabyte)) {
+        return round($bytes / $megabyte, $precision) . ' MB';
+
+    } elseif ($bytes >= $gigabyte) {
+        return round($bytes / $gigabyte, $precision) . ' GB';
+    } else {
+        return $bytes . ' B';
+    }
+}
+
 
 
 
@@ -69,11 +91,12 @@ if (is_dir($dir)){
                         if($file != "." && $file != ".."){
                             $extension = pathinfo($file, PATHINFO_EXTENSION);
                             $size = filesize($dir.$file);
+                            $prettysize = readablesize($size);
                             $placeoffile = ($dir.$file);
                             echo("
                             <td><a href='$placeoffile'>filename: $file </a></td>
                             <td>$extension</td>
-                            <td>$size</td>
+                            <td>$prettysize</td>
                             <td>$placeoffile</td>
                             <tr>");
                         }
