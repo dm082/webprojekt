@@ -1,0 +1,15 @@
+a {
+    text-decoration: none;
+}
+
+.fa {
+    color: #000;
+}
+
+.active {
+}
+
+.inactive {
+    color: red;
+    border: 10px solid blue;
+}

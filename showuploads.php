@@ -66,8 +66,21 @@ if (is_dir($dir)){
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <link href="showuploads.css" rel="stylesheet">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" async></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <title>Meine Uploads</title>
+
+<!-- Sobald der Link gedrückt wird, wird das "nächste" tr Element in Bezug auf a ausgeblendet-->
+    <script>
+        $(document).ready(function(){
+            $("a").click(function(){
+                $(this).closest("tr").fadeOut('slow');
+            });
+        });
+    </script>
 </head>
 <body>
 <body>
@@ -81,6 +94,7 @@ if (is_dir($dir)){
             <th>Type</th>
             <th>Size</th>
             <th>Date Modified</th>
+            <th>Delete?</th>
         </tr>
         </thead>
         <tbody>
@@ -94,17 +108,20 @@ if (is_dir($dir)){
                             $prettysize = readablesize($size);
                             $placeoffile = ($dir.$file);
                             echo("
+                            <tr class='active'>
                             <td><a href='$placeoffile'>filename: $file </a></td>
                             <td>$extension</td>
                             <td>$prettysize</td>
                             <td>$placeoffile</td>
-                            <tr>");
+                            <td><a><i class='fa fa-trash '></i></a></td>
+                            </tr>");
                         }
                     }
                     closedir($dh);
                 }
             }
         ?>
+
 
 
         </tbody>
