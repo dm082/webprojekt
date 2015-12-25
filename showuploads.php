@@ -69,6 +69,7 @@ if (is_dir($dir)){
 
     <link href="showuploads.css" rel="stylesheet">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" async></script>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <title>Meine Uploads</title>
@@ -109,7 +110,7 @@ if (is_dir($dir)){
                             $placeoffile = ($dir.$file);
                             echo("
                             <tr class='active'>
-                            <td><a href='$placeoffile'>filename: $file </a></td>
+                            <td><a href='$placeoffile'>$file </a></td>
                             <td>$extension</td>
                             <td>$prettysize</td>
                             <td>$placeoffile</td>
