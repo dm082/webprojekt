@@ -21,9 +21,10 @@ if( isset( $_SESSION['loggedin'] ) ) {
 
 }
 
+
 //Daten aus DB herauslesen
 
-$sql = $db->prepare('SELECT userid, vorname, nachname, email, passwort FROM User');
+$sql = $db->prepare('SELECT userid, vorname, nachname, email, passwort FROM User WHERE email = $_SESSION["email"]');
 $array = array(
     ':userid' => $_GET['userid'],
     ':vorname' => $_GET['vorname'],
@@ -34,20 +35,22 @@ $array = array(
 $sql->execute($array);
 
 
-//Hier gibt er nur die erste Zeile der Tabelle aus
-/* while ($row = $sql->fetch()) {
-    echo $row['userid'].'<br />';
-    echo $row['vorname'].'<br />';
-    echo $row['nachname'].'<br />';
-    echo $row['email'].'<br />';
-    echo $row['passwort'].'<br />'; */
+/* //Hier gibt er nur die erste Zeile der Tabelle aus
+while ($sql->fetch()) {
+    echo $sql['userid'] . '<br />';
+    echo $sql['vorname'] . '<br />';
+    echo $sql['nachname'] . '<br />';
+    echo $sql['email'] . '<br />';
+    echo $sql['passwort'] . '<br />';
+    }
+*/
 
-//Hier gibt er alle Zeilen der Tabelle aus
+////Hier gibt er alle Zeilen der Tabelle aus
     while ($_SESSION = $sql->fetch()) {
-        echo $_SESSION['userid'].'<br />';
-        echo $_SESSION['vorname'].'<br />';
-        echo $_SESSION['nachname'].'<br />';
-        echo $_SESSION['email'].'<br />';
-        echo $_SESSION['passwort'].'<br />';
-}
+        echo $_SESSION['userid'] . '<br />';
+        echo $_SESSION['vorname'] . '<br />';
+        echo $_SESSION['nachname'] . '<br />';
+        echo $_SESSION['email'] . '<br />';
+        echo $_SESSION['passwort'] . '<br />';
+    }
 ?>
