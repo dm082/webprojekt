@@ -21,6 +21,7 @@ if( isset( $_SESSION['loggedin'] ) ) {
 
 }
 
+//Daten aus DB herauslesen
 
 $sql = $db->prepare('SELECT userid, vorname, nachname, email, passwort FROM User');
 $array = array(
