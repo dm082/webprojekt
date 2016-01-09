@@ -7,7 +7,6 @@ session_start ();
 include ("connection.php");
 
 
-
 // Check die Verbindung   -- geklaut vom showuploads-Skript
 
 if ($_SESSION['loggedin'] != 1) {
@@ -24,33 +23,20 @@ if( isset( $_SESSION['loggedin'] ) ) {
 
 //Daten aus DB herauslesen
 
-$sql = $db->prepare('SELECT userid, vorname, nachname, email, passwort FROM User WHERE email = $_SESSION["email"]');
+$sql = $db->prepare('SELECT userid, vorname, nachname, email, passwort FROM User WHERE email = :email');
 $array = array(
-    ':userid' => $_GET['userid'],
-    ':vorname' => $_GET['vorname'],
-    ':nachname' => $_GET['nachname'],
-    ':email' => $_GET['email'],
-    ':passwort' => $_GET['passwort']
+    ':email' => $_SESSION['email']
 );
 $sql->execute($array);
 
+//Gibt Datensätze der aktuellen Session untereinander aus
 
-/* //Hier gibt er nur die erste Zeile der Tabelle aus
-while ($sql->fetch()) {
-    echo $sql['userid'] . '<br />';
-    echo $sql['vorname'] . '<br />';
-    echo $sql['nachname'] . '<br />';
-    echo $sql['email'] . '<br />';
-    echo $sql['passwort'] . '<br />';
-    }
-*/
+while ($row = $sql->fetch()) {
+    echo $row['userid'] . '<br />';
+    echo $row['vorname'] . '<br />';
+    echo $row['nachname'] . '<br />';
+    echo $row['email'] . '<br />';
+    echo $row['passwort'] . '<br />';
+    };
 
-////Hier gibt er alle Zeilen der Tabelle aus
-    while ($_SESSION = $sql->fetch()) {
-        echo $_SESSION['userid'] . '<br />';
-        echo $_SESSION['vorname'] . '<br />';
-        echo $_SESSION['nachname'] . '<br />';
-        echo $_SESSION['email'] . '<br />';
-        echo $_SESSION['passwort'] . '<br />';
-    }
 ?>
