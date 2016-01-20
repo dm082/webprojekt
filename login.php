@@ -35,6 +35,7 @@ if($pwvergleich == $password_hash)
     $_SESSION["email"] = $email;
     $_SESSION["loggedin"] = 1;
        echo "Login erfolgreich. <br> <a href='uploadseitee.html' >Zum Upload</a>";
+        header('Location: showuploads.php');
 }
 else
 {
