@@ -15,7 +15,7 @@ if ($_SESSION['loggedin'] != 1) {
 
 if( isset( $_SESSION['loggedin'] ) )
 {
-    echo "Session-Email:". ($_SESSION['email']. "<br/>");
+    //echo "Session-Email:". ($_SESSION['email']. "<br/>");
 }
 
 // Lesbare Zahlen für "Größe"
@@ -66,7 +66,8 @@ if (is_dir($dir)){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
     <link href="showuploads.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -103,9 +104,24 @@ if (is_dir($dir)){
 </head>
 <body>
 
+<div>
+    <div class="nav">
+        <div class="container">
+            <ul class="pull-left">
+                <li><a href="index.html">VINTLOUD</a></li>
+            </ul>
+            <ul class="pull-right">
+                <li><a href="uploadseitee.html">Upload</a></li>
+                <li><a href="profil.html">Profil</a></li>
+                <li><a href="showuploads.php">&Uuml;bersicht</a></li>
+                <li><a href="logout.php">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 <div id="tablecontainer">
     <h1>Directory Contents</h1>
-    <a href="uploadseitee.html">Zum Upload</a>
     <div id="load" align="center"><img src="images/loading.gif" width="28" height="28" align="absmiddle"/> Loading...</div>
     <table class="userfiles">
         <thead>

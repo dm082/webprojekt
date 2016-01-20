@@ -2,6 +2,11 @@
  * The MIT License
  * Copyright (c) 2012 Matias Meno <m@tias.me>
  */
+
+body {
+    background-color: white;
+    font-family: "Raleway", "Helvetica Neue", "Arial", "sans-serif";
+}
 @-webkit-keyframes passing-through {
   0% {
     opacity: 0;
@@ -174,9 +179,13 @@
   box-sizing: border-box; }
 
 .dropzone {
-  min-height: 150px;
-  border: 2px solid rgba(0, 0, 0, 0.3);
+  min-height: 50vh;
+    width: 70vw;
+    margin: 0 auto;
+    top: 20vh;
+  border: 2px dashed #98d2e6;
   background: white;
+  border-radius: 5px;
   padding: 20px 20px; }
   .dropzone.dz-clickable {
     cursor: pointer; }
