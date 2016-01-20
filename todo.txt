@@ -1,11 +1,12 @@
-- Sch�ne MB-GB Zahlen einf�gen anstatt Byte   #DONE!
-- Delete einf�gen bei showuploads
-- Profil einf�gen
-    -- Profilbild �ndern
-    -- Passwort �ndern
+- Schöne MB-GB Zahlen einfügen anstatt Byte   #DONE!
+- Delete einfügen bei showuploads    #DONE
+- Profil einfügen
+    -- Profilbild ändern
+    -- Passwort ändern
 - Sortieren der Ergebnisse bei Showuploads
-- Bild f?r mehrere Ger?te verf?gbar machen + Blauer Hintergrund l?schen
+- Bild für mehrere Ger#te verfügbar machen + Blauer Hintergrund l?schen
 - umbenennen und teilen bei showuploads
+- Registrieren Button bei Index eine FUnktion zuweisen
 
 
---- Leerzeichen entfernen und L?schvorg?nge ?berpr?fen
+--- Leerzeichen entfernen und Löschvorgänge überprüfen  #DONE
