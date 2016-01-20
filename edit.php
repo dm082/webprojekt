@@ -39,7 +39,8 @@ if($pwvergleich == $password_hash)
 }
 else
 {
-    echo "Das eingegebene alte Passwort stimmt nicht.";
+    echo "Das eingegebene alte Passwort stimmt nicht. <br />";
+    echo "Zur&uuml;ck zum <a href='profil.php'>Profil</a>";
     $error = true;
 }
 
