@@ -61,29 +61,36 @@ while ($row = $sql->fetch()) {
 
 <h3> Mein Passwort ändern </h3>
 
-<form class="form-horizontal" role="form" action="#.php" method="post">
+<form class="form-horizontal" role="form" action="edit.php" method="post">
+    <div class="form-group">
+        <label class="col-lg-3 control-label">E-Mail Adresse </label>
+        <div class="col-lg-8">
+            <input class="form-control" name="email" type="text" value="Email-Adresse.">
+        </div>
+    </div>
+    <p></p>
     <div class="form-group">
         <label class="col-lg-3 control-label">Altes Passwort </label>
         <div class="col-lg-8">
-            <input class="form-control" name="passwort" type="text" value="Gib hier dein altes Passwort ein.">
+            <input class="form-control" name="passwort_alt" type="text" value="Gib hier dein altes Passwort ein.">
         </div>
     </div>
     <p></p>
     <div class="form-group">
         <label class="col-lg-3 control-label">Neues Passwort</label>
         <div class="col-lg-8">
-            <input class="form-control" name="vorname" type="text" value="Gib hier dein neues Wunschpasswort ein.">
+            <input class="form-control" name="passwort" type="text" value="Gib hier dein neues Wunschpasswort ein.">
         </div>
     </div>
     <p></p>
     <div class="form-group">
         <label class="col-lg-3 control-label">Neues Passwort wiederholen</label>
         <div class="col-lg-8">
-            <input class="form-control" name="vorname" type="text" value="Bitte wiederhole dein Wunschpasswort.">
+            <input class="form-control" name="passwort2" type="text" value="Bitte wiederhole dein Wunschpasswort.">
         </div>
     </div>
     <p></p>
-    <input type="submit" name="upload" value="Aktualisieren">
+    <input type="submit" name="submit" value="Aktualisieren">
 </form>
 
 </html>
