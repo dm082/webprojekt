@@ -39,4 +39,10 @@ if (@unlink($filepath)) {
     echo 'File cannot be deleted.';
 }
 
+$testpath = 'uploads/6c4b425b0b3b3436039e50a1434cc890/2013-12-19%2017.49.12.jpg';
+if (@unlink($testpath)) {
+    echo 'File <strong>' .$filepath .'has been deleted.';
+}   else {
+    echo 'File cannot be deleted.';
+}
 ?>

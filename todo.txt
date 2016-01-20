@@ -1,5 +1,5 @@
 - Schöne MB-GB Zahlen einfügen anstatt Byte   #DONE!
-- Delete einfügen bei showuploads
+- Delete einfügen bei showuploads   #DONE
 - Profil einfügen
 - Sortieren der Ergebnisse bei Showuploads
 - Bild für mehrere Geräte verfügbar machen + Blauer Hintergrund löschen

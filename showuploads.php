@@ -105,6 +105,7 @@ if (is_dir($dir)){
 
 <div id="tablecontainer">
     <h1>Directory Contents</h1>
+    <a href="uploadseitee.html">Zum Upload</a>
     <div id="load" align="center"><img src="images/loading.gif" width="28" height="28" align="absmiddle"/> Loading...</div>
     <table class="userfiles">
         <thead>
