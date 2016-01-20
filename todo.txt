@@ -1,8 +1,11 @@
-- Schöne MB-GB Zahlen einfügen anstatt Byte   #DONE!
-- Delete einfügen bei showuploads
-- Profil einfügen
+- Schï¿½ne MB-GB Zahlen einfï¿½gen anstatt Byte   #DONE!
+- Delete einfï¿½gen bei showuploads
+- Profil einfï¿½gen
+    -- Profilbild Ã¤ndern
+    -- Passwort Ã¤ndern
 - Sortieren der Ergebnisse bei Showuploads
-- Bild für mehrere Geräte verfügbar machen + Blauer Hintergrund löschen
+- Bild fï¿½r mehrere Gerï¿½te verfï¿½gbar machen + Blauer Hintergrund lï¿½schen
+- umbenennen und teilen bei showuploads
 
 
---- Leerzeichen entfernen und Löschvorgänge überprüfen
+--- Leerzeichen entfernen und Lï¿½schvorgï¿½nge ï¿½berprï¿½fen
