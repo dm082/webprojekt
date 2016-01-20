@@ -19,3 +19,20 @@ td {
     padding: 10px 5px;
     font-family:"Raleway", "Helvetica Neue", "Arial", "sans-serif";
 }
+
+
+#load {
+    position:absolute;
+    left:225px;
+    background-image:url(images/loading-bg.png);
+    background-position:center;
+    background-repeat:no-repeat;
+    width:159px;
+    color:#999;
+    font-size:18px;
+    font-family:Arial, Helvetica, sans-serif;
+    height:40px;
+    font-weight:300;
+    padding-top:14px;
+    top: 23px;
+}

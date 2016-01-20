@@ -2,3 +2,7 @@
 - Delete einfügen bei showuploads
 - Profil einfügen
 - Sortieren der Ergebnisse bei Showuploads
+- Bild für mehrere Geräte verfügbar machen + Blauer Hintergrund löschen
+
+
+--- Leerzeichen entfernen und Löschvorgänge überprüfen
