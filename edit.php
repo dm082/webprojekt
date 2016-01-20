@@ -34,7 +34,7 @@ if($pwvergleich == $password_hash)
 {
     $_SESSION["email"] = $email;
     $_SESSION["loggedin"] = 1;
-    echo "Passwoerter stimmen &uuml;berein.";
+    echo "Passw&ouml;rter stimmen &uuml;berein.";
     $error = false;
 }
 else
@@ -56,7 +56,7 @@ if ($error == false) {
     if ($pw == $pw2) {
 
 
-        $pw = $_POST["passwort"];
+ //       $pw = $_POST["passwort"];
         $secret_salt = "topsecretsalt";
         $salted_password = $secret_salt . $pw;
         $password_hash = hash('sha256', $salted_password);
@@ -71,7 +71,7 @@ if ($error == false) {
 
         $edit->execute($array);
 
-        echo "Ihr Passwort wurde erfolgreich ge&aandert <br /> ";
+        echo "Ihr Passwort wurde erfolgreich ge&auml;ndert. <br /> ";
         echo "<a href='loginsite.html'>Einloggen</a><br/>";
         echo $password_hash;
     } else {
