@@ -6,7 +6,7 @@
 - Sortieren der Ergebnisse bei Showuploads
 - Bild für mehrere Ger#te verfügbar machen + Blauer Hintergrund l?schen
 - umbenennen und teilen bei showuploads
-- Registrieren Button bei Index eine FUnktion zuweisen
+- Registrieren Button bei Index eine FUnktion zuweisen #DONE
 
 
 --- Leerzeichen entfernen und Löschvorgänge überprüfen  #DONE
