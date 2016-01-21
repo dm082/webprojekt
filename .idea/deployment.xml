@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" showExcludedInSync="true">
+  <component name="PublishConfigData" serverName="mars.iuk.hdm-stuttgart.de" showExcludedInSync="true">
     <serverData>
-      <paths name="mars">
+      <paths name="mars.iuk.hdm-stuttgart.de">
         <serverdata>
           <mappings>
-            <mapping deploy="public_html/webprojekt2" local="$PROJECT_DIR$" web="/~rj015/webprojekt2/" />
+            <mapping deploy="/public_html/webprojekt2" local="$PROJECT_DIR$" web="/~kk111/webprojekt2" />
           </mappings>
         </serverdata>
       </paths>

@@ -8,7 +8,7 @@ $dir = "uploads/$directorywert/";
 // Check die Verbindung
 
 if ($_SESSION['loggedin'] != 1) {
-    // Wenn der User die Session nicht auf 1 hat, wird er auf die Loginseite zurückgeleitet
+    // Wenn der User die Session nicht auf 1 hat, wird er auf die Loginseite zurï¿½ckgeleitet
     header("Location: loginsite.html");
     exit;
 }
@@ -18,7 +18,7 @@ if( isset( $_SESSION['loggedin'] ) )
     //echo "Session-Email:". ($_SESSION['email']. "<br/>");
 }
 
-// Lesbare Zahlen für "Größe"
+// Lesbare Zahlen fï¿½r "Grï¿½ï¿½e"
 
 function readablesize($bytes, $precision = 1)
 {
@@ -28,7 +28,7 @@ function readablesize($bytes, $precision = 1)
 
     if (($bytes >= 0) && ($bytes < $kilobyte)) {
         return $bytes . ' B';
-// Ist die Bytezahl größer oder gleich als $kilobyte? & ist die Bytezahl gleichzeitig kleiner als Megabyte?
+// Ist die Bytezahl grï¿½ï¿½er oder gleich als $kilobyte? & ist die Bytezahl gleichzeitig kleiner als Megabyte?
     } elseif (($bytes >= $kilobyte) && ($bytes < $megabyte)) {
         return round($bytes / $kilobyte, $precision) . ' KB';
 
@@ -46,7 +46,7 @@ function readablesize($bytes, $precision = 1)
 
 
 // Open a directory, and read its contents
-/* Läuft, kann aber bald gelöscht werden da unten vorhanden
+/* Lï¿½uft, kann aber bald gelï¿½scht werden da unten vorhanden
 if (is_dir($dir)){
     if ($dh = opendir($dir)){
         while (($file = readdir($dh)) !== false){
@@ -77,7 +77,7 @@ if (is_dir($dir)){
 
     <title>Meine Uploads</title>
 
-<!-- Sobald der Link gedrückt wird, wird das "nächste" tr Element in Bezug auf a ausgeblendet-->
+<!-- Sobald der Link gedrï¿½ckt wird, wird das "nï¿½chste" tr Element in Bezug auf a ausgeblendet-->
     <script>
         $(document).ready(function(){
             $(".delete").click(function(){
@@ -112,7 +112,7 @@ if (is_dir($dir)){
             </ul>
             <ul class="pull-right">
                 <li><a href="uploadseitee.html">Upload</a></li>
-                <li><a href="profil.html">Profil</a></li>
+                <li><a href="profil.php">Profil</a></li>
                 <li><a href="showuploads.php">&Uuml;bersicht</a></li>
                 <li><a href="logout.php">Logout</a></li>
             </ul>
