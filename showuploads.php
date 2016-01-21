@@ -130,7 +130,6 @@ if (is_dir($dir)){
             <th>Type</th>
             <th>Size</th>
             <th>Date Modified</th>
-            <th>Delete?</th>
         </tr>
         </thead>
         <tbody>
@@ -149,6 +148,7 @@ if (is_dir($dir)){
                             <td>$extension</td>
                             <td>$prettysize</td>
                             <td>$placeoffile</td>
+                            <td><a><i class='fa fa-share'></i></a></td>
                             <td><a><i id=$placeoffile class='delete fa fa-trash'></i></a></td>
                             </tr>");
                         }
