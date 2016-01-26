@@ -86,9 +86,12 @@ while ($row = $sql->fetch()) {
 
 <h3>Profilfoto</h3>
 <hr>
-<div class="useravatar">
-    <img alt="bild" src="http://placekitten.com/g/400/200">
-    <p></p>
+<div>
+
+    <?php
+    echo "<p><img src='" . $row['profilbildpfad'] . "' /></p>";
+    ?>
+
     <div id="upload" >
         <form action="profilfoto.php" method="post" enctype="multipart/form-data">
             Bild: <input type="file" name="bild"> <input type="submit" name="upload" value="Hochladen">

@@ -56,7 +56,6 @@ if ($error == false) {
     if ($pw == $pw2) {
 
 
- //       $pw = $_POST["passwort"];
         $secret_salt = "topsecretsalt";
         $salted_password = $secret_salt . $pw;
         $password_hash = hash('sha256', $salted_password);

@@ -7,6 +7,7 @@ include_once ("connection.php");   //DB Verbindung herstellen
 // include_once("userdata.php");
 // $db = new PDO($dsn, $db_user, $db_pass);
 
+
 $pw = $_POST["passwort"];
 $pw2 = $_POST["passwort2"];
 $user_dir = md5($_POST["email"]); /* Es wird auf Basis der einmalige EMail ein Hashwert erzeugt*/
@@ -19,6 +20,7 @@ if ($pw == $pw2)
         $secret_salt = "topsecretsalt";
         $salted_password = $secret_salt . $pw;
         $password_hash = hash('sha256', $salted_password);
+        $profilbildpfad = 0;
 
         echo "Gl&uuml;ckwunsch zur Registrierung <br /> ";
         echo "<a href='loginsite.html'>Einloggen</a><br/>";
@@ -34,8 +36,8 @@ if ($pw == $pw2)
             echo "Weiter zu ihrem Ordner";
         }
 
-        // Hier  wird die query ausgeführt und die Variablen in der Datenbank gespeichert.
-        $sql = "INSERT INTO User (vorname, nachname, email, passwort, passwort2, pfad) VALUES (:vorname,:nachname,:email,:passwort,:passwort2, :pfad)";
+        // Hier  wird die query ausgefï¿½hrt und die Variablen in der Datenbank gespeichert.
+        $sql = "INSERT INTO User (vorname, nachname, email, passwort, passwort2, pfad, profilbildpfad) VALUES (:vorname,:nachname,:email,:passwort,:passwort2, :pfad, :profilbildpfad)";
         $query = $db->prepare($sql);
         $query->execute(
             array(
@@ -45,6 +47,7 @@ if ($pw == $pw2)
                 ':passwort'=> $password_hash,
                 ':passwort2'=> $password_hash,
                 ':pfad' => $user_dir,
+                ':profilbildpfad' => $profilbildpfad,
 
             )
         );
