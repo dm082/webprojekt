@@ -17,8 +17,17 @@ if ($_POST['upload']) {
     //   $bildname = '$_SESSION["vorname"].gif';
 
     if ($bildname != '' AND $bildtmp != '') {    //prüft ob Bildname und Speicherort befüllt sind
-        //      $filetype=$_FILES['file']['type'];
+         //     $filetype=$_FILES['file']['type'];
         //      if($filetype=='image/jpeg' or $filetype=='image/png' or $filetype=='image/gif') {
+
+        // Allow certain file formats
+    //    if($filetype != "jpg" && $filetype != "png" && $filetype != "jpeg"
+     //       && $filetype != "gif" ) {
+    //        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+    //        $uploadOk = 0;
+    //    }
+
+
         $profilbildpfad = "profilbild/$bildname";
         move_uploaded_file($bildtmp, $profilbildpfad);
 
@@ -64,7 +73,7 @@ $db     = null;
 
 // die();
 
-// wenn erste if Klammer ganz unten erst zugemacht wird, dann kommt gar keine Meldung
+
 ?>
 
 

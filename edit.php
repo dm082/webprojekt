@@ -7,7 +7,7 @@ include ("connection.php");
 
 //Passwortvergleich (eingegebenes PW mit dem der DB)
 
-$email = $_POST["email"];
+$email = $_SESSION["email"];
 $passwort_alt = $_POST["passwort_alt"];
 
 try{

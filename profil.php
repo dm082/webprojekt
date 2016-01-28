@@ -37,59 +37,33 @@
 </body>
 </html>
 
-<?php
-
-// Session starten
-session_start ();
-
-// Datenbankverbindung aufbauen
-include ("connection.php");
-
-
-// Check die Verbindung   -- geklaut vom showuploads-Skript
-
-if ($_SESSION['loggedin'] != 1) {
-    // Wenn der User die Session nicht auf 1 hat, wird er auf die Loginseite zur�ckgeleitet
-    header("Location: loginsite.html");
-    exit;
-}
-
-if( isset( $_SESSION['loggedin'] ) ) {
-    echo "Session-Email:" . ($_SESSION['email'] . "<br/>");
-
-}
-
-
-//Daten aus DB herauslesen
-
-$sql = $db->prepare('SELECT userid, vorname, nachname, email  FROM User WHERE email = :email');
-$array = array(
-    ':email' => $_SESSION['email']
-);
-$sql->execute($array);
-
-//Gibt Datensätze untereinander aus
-
-echo "Mein Profil <br />";
-
-while ($row = $sql->fetch()) {
-    echo 'Userid: ' . $row['userid'] . '<br />';
-    echo 'Vorname: ' . $row['vorname'] . '<br />';
-    echo 'Nachname: ' . $row['nachname'] . '<br />';
-    echo 'E-Mailadresse: ' . $row['email'] . '<br />';
-    };
-
-?>
 
 
 <html>
 
-<h3>Profilfoto</h3>
+<h3 class="col-md-offset-4" >Mein Profil </h3>
 <hr>
-<div>
+
+<?php
+
+include ("profilausgabe.php");
+
+?>
+
+
 
     <?php
-    echo "<p><img src='" . $row['profilbildpfad'] . "' /></p>";
+    include ('connection.php');
+    $einfuegen = $db->prepare('SELECT * FROM User WHERE email = :email');
+    $array = array(
+        ':email' => $_SESSION['email']
+    );
+    $einfuegen->execute($array);
+
+
+    while ($row = $einfuegen->fetch()) {
+        echo "<img src='" . $row['profilbildpfad'] . "'>";
+    };
     ?>
 
     <div id="upload" >
@@ -98,41 +72,34 @@ while ($row = $sql->fetch()) {
         </form>
 
     </div>
-</div>
 
 
-<h3> Mein Passwort ändern </h3>
+<h3 class="col-md-offset-4" >Mein Passwort ändern </h3>
 
 <form class="form-horizontal" role="form" action="edit.php" method="post">
     <div class="form-group">
-        <label class="col-lg-3 control-label">E-Mail Adresse </label>
-        <div class="col-lg-8">
-            <input class="form-control" name="email" type="text" value="Email-Adresse.">
-        </div>
-    </div>
-    <p></p>
-    <div class="form-group">
         <label class="col-lg-3 control-label">Altes Passwort </label>
-        <div class="col-lg-8">
+        <div class="col-lg-5">
             <input class="form-control" name="passwort_alt" type="text" value="Gib hier dein altes Passwort ein.">
         </div>
     </div>
     <p></p>
     <div class="form-group">
         <label class="col-lg-3 control-label">Neues Passwort</label>
-        <div class="col-lg-8">
+        <div class="col-lg-5">
             <input class="form-control" name="passwort" type="text" value="Gib hier dein neues Wunschpasswort ein.">
         </div>
     </div>
     <p></p>
     <div class="form-group">
         <label class="col-lg-3 control-label">Neues Passwort wiederholen</label>
-        <div class="col-lg-8">
+        <div class="col-lg-5">
             <input class="form-control" name="passwort2" type="text" value="Bitte wiederhole dein Wunschpasswort.">
         </div>
     </div>
-    <p></p>
-    <input type="submit" name="submit" value="Aktualisieren">
+    <div class="button-container col-md-offset-4">
+        <button class="sweep" type="" name="submitdata">Passwort ändern</button>
+    </div>
 </form>
 
 </html>
