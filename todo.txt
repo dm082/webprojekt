@@ -11,4 +11,7 @@
 RESPONSIVE
 
 
+
+Gibt es ein Problem mit dem Profilbild bei verschiedenen Nutzern - gleicher Profilbildname, weil Speicherung in einem Ordner?
+
 --- Leerzeichen entfernen und Löschvorgänge überprüfen  #DONE

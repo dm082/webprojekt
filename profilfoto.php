@@ -11,21 +11,12 @@ if ($_POST['upload']) {
     $bildname = $_FILES['bild']['name'];  //greift auf den Namen der Datei zu
     $bildtmp = $_FILES['bild']['tmp_name'];  //greift auf den temporären Pfad der Datei zu
 
+
     echo $bildname . "<br>";
     echo $bildtmp;
 
-    //   $bildname = '$_SESSION["vorname"].gif';
 
     if ($bildname != '' AND $bildtmp != '') {    //prüft ob Bildname und Speicherort befüllt sind
-         //     $filetype=$_FILES['file']['type'];
-        //      if($filetype=='image/jpeg' or $filetype=='image/png' or $filetype=='image/gif') {
-
-        // Allow certain file formats
-    //    if($filetype != "jpg" && $filetype != "png" && $filetype != "jpeg"
-     //       && $filetype != "gif" ) {
-    //        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-    //        $uploadOk = 0;
-    //    }
 
 
         $profilbildpfad = "profilbild/$bildname";
@@ -33,7 +24,6 @@ if ($_POST['upload']) {
 
 
         //Einfügen in DB
-   //     $uploadprofilbild = $db->prepare('INSERT INTO User profilbildpfad VALUES :profilbildpfad WHERE email = :email');
         $uploadprofilbild = $db->prepare('UPDATE User SET profilbildpfad = :profilbildpfad WHERE email = :email');
         $query = array(
             ':profilbildpfad' => $profilbildpfad,
