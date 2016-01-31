@@ -10,9 +10,15 @@ include("connection.php");
 if ($_POST['upload']) {
     $bildname = $_FILES['bild']['name'];  //greift auf den Namen der Datei zu
     $bildtmp = $_FILES['bild']['tmp_name'];  //greift auf den temporären Pfad der Datei zu
+    $dir_zusatz = md5($_SESSION['email']);
+
+    $olduserfile = $_FILES["bild"]["name"];
+    $middleuserfile = preg_replace ("([^\w\s\d\-_~,;:\[\]\(\).])", '', $olduserfile);
+    $newuserfile = preg_replace('/\s+/', '_', $middleuserfile);
+
 
     $target_dir = "profilbild/";
-    $target_file = $target_dir . basename($_FILES["bild"]["name"]);
+    $target_file = $target_dir . basename($newuserfile);
     $filetype = pathinfo($target_file, PATHINFO_EXTENSION);
     $filesize = $_FILES['bild']['size'];
 
@@ -20,13 +26,15 @@ if ($_POST['upload']) {
     echo $bildtmp . "<br>";
     echo $filetype . "<br>";
     echo $filesize . "<br>";
+    echo $dir_zusatz;
 
 
     if ($bildname != '' AND $bildtmp != '') {    //prüft ob Bildname und Speicherort befüllt sind
 
         // Allow certain file formats
         if ($filetype != "jpg" && $filetype != "png" && $filetype != "jpeg"
-            && $filetype != "gif"
+            && $filetype != "gif" && $filetype !="JPG" && $filetype !="JPEG"
+            && $filetype !="GIF" && $filetype !="PNG"
         ) {
             echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
             $error = true;
@@ -40,7 +48,7 @@ if ($_POST['upload']) {
 
     if ($error == false) {
 
-        $profilbildpfad = "profilbild/$bildname";
+        $profilbildpfad = "profilbild/$dir_zusatz.$newuserfile";
         move_uploaded_file($bildtmp, $profilbildpfad);
 
 

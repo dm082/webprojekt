@@ -8,6 +8,7 @@
 - umbenennen und teilen bei showuploads
 - Registrieren Button bei Index eine FUnktion zuweisen #DONE
 
+- schöner avatar bei neu erstelltem Profil
 RESPONSIVE
 
 
