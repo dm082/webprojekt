@@ -119,7 +119,7 @@ if (is_dir($dir)){
         });
 
         /* LINK Versenden -------------------------------------*/
-        $(document).ready(function () {
+        /* $(document).ready(function () {
             $(".linkinfo").click(function () {
                 $( "#dialog" ).dialog();
                 var element = $(this);
@@ -128,27 +128,39 @@ if (is_dir($dir)){
                 alert (share_info);
             });
         });
-
+*/
         /* Umbenennen ------------------------------------------------------------*/
         $(document).ready(function () {
             $(".senden").click(function(){
                 var neuername = $(this).prev('input').val();
                 alert(neuername);
-
                 var element = $(this);
                 var share_id = element.attr("id");
-                var info = 'id=' + share_id;
+                var info =  share_id;
                 var share_info = 'http://mars.iuk.hdm-stuttgart.de/~dm082/phptest/' + share_id;
                 $.ajax({
                     type: "POST",
                     url: "rename.php",
-                    data: info,
+                    data: {info: info, neuername:neuername} ,
                     success: function () {
                     }
                 });
                 return false;
             });
         });
+        $(document).ready(function () {
+            $(".senden").click(function () {
+                $("#tablecontainer").load("showuploads.php");
+            })
+        });
+
+        $(document).ready(function () {
+            $(".linkinfo").click(function () {
+                $(".testtt").toggleClass("visible");
+            })
+        });
+
+
     </script>
 
 
@@ -195,7 +207,7 @@ if (is_dir($dir)){
                         $placeoffile = ($dir . $file);
                         echo("
                             <tr class='active'>
-                            <td><a href='$placeoffile'>$file </a></td>
+                            <td><input class='testtt' type='text'><a id='name' href='$placeoffile'><span>$file</span></a></td>
                             <td>$extension</td>
                             <td>$prettysize</td>
                             <td><input type='text' placeholder='Neuer Dateiname'><i id=$placeoffile class='senden fa fa-paper-plane'></i> </td>
@@ -213,6 +225,7 @@ if (is_dir($dir)){
 
         </tbody>
     </table>
+</div>
 
     <!-- Modal HTML -->
     <div id="myModal" class="modal fade">

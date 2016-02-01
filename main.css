@@ -24,7 +24,7 @@ html body {
     font-weight: 300;
     padding: 32px 20px;
 }
-/* Hover Effekt beim drübergehen*/
+/* Hover Effekt beim drï¿½bergehen*/
 .nav a:hover {
     background-color: #c6c6c6;
     opacity: 0.75;
@@ -41,7 +41,7 @@ html body {
 
 /* Jumbotron BEGINN --------------------------------------------------*/
 .jumbotron {
-    height: 100vh; /* Viewport Height regelt die Größe des Blocks entsprechend dem Bildschirm*/
+    height: 100vh; /* Viewport Height regelt die Grï¿½ï¿½e des Blocks entsprechend dem Bildschirm*/
     background-color: #002846;
     margin-bottom: 0px;
     background-image: url(https://images.unsplash.com/photo-1437419764061-2473afe69fc2?dpr=1.5&fit=crop&fm=jpg&h=875&ixlib=rb-0.3.5&q=66&w=1450);
@@ -66,7 +66,7 @@ html body {
 
 }
 
-/* Von links werden die Unterstriche und die Farben gelöscht*/
+/* Von links werden die Unterstriche und die Farben gelï¿½scht*/
 a {
     text-decoration: none;
 }
@@ -441,4 +441,16 @@ h2 {
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
     border-radius: 5px;
+}
+
+.testtt {
+    position: relative;
+    left: 100px;
+    opacity: 0;
+    z-index:-1;
+}
+
+.visible {
+    opacity: 1;
+    z-index: 1;
 }

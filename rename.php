@@ -9,48 +9,29 @@ $directorywert = md5($_SESSION['email']);
 $target_dir = "uploads/$directorywert/";
 // Mithilfe von preg_replace werden ungültige Zeichen, die zu Problemen führen können, ersetzt.
 
-$insertedfilename = $_POST["newfilename"];
+/* Erhalten der Variablen durch Ajax von showuploads.php*/
+$altername = $_POST['info'];
+$namenswunsch = $_POST['neuername'];
 
-
-$altername = $_POST['id'];
-
-
+/* Zerlegen der Variable in Name und Endung*/
 $path_parts = pathinfo($altername);
-echo $path_parts['filename'], "\n";
+$nameohneendung = $path_parts['filename'];
+$namenextension = $path_parts['extension'];
+
+/* Hier werden Zeichen zum Schutz vor Komplikationen geändert*/
+$namensänderung = $namenswunsch;
+$ersteÄnderung = preg_replace ("([^\w\s\d\-_~,;:\[\]\(\).])", '', $namensänderung);
+$zweiteÄnderung = preg_replace('/\s+/', '_', $ersteÄnderung);
+
+/* FILENAME und Extension werden zusammengeführt */
+$sicherername = $zweiteÄnderung.".".$namenextension;
+echo $sicherername;
+rename($altername, $target_dir.$sicherername);
 
 
-
-chmod("uploads/6c4b425b0b3b3436039e50a1434cc890", 0777);
+/*chmod("uploads/6c4b425b0b3b3436039e50a1434cc890", 0777);
 chmod($altername, 0777);
-
-$middlefilename = preg_replace ("([^\w\s\d\-_~,;:\[\]\(\).])", '', $insertedfilename);
-$newfilename = preg_replace('/\s+/', '_', $middlefilename);
-
-
-
-rename("$altername", $target_dir."");
-
-/*
-$ausgabe = "$target_dir/$newfilename";
-$oldfilename = $_POST['id'];
-
-//rename($oldfilename , $ausgabe);
-rename("$oldfilename" , "newname");
-echo $oldfilename."test";
-echo $_POST["info"]."test";
 */
+
 ?>
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-
-
-<form action="#" method="post">
-    <input name="newfilename" type="text" placeholder="Gib hier den neuen Dateinamen ein." required>
-    <input type="submit" name="upload" value="Hochladen"></form>
-</html>
-
 
