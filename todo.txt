@@ -1,12 +1,10 @@
-- Schöne MB-GB Zahlen einfügen anstatt Byte   #DONE!
-- Delete einfügen bei showuploads    #DONE
 - Profil einfügen
     -- Profilbild ändern   #DONE
     -- Passwort ändern      #DONE
 - Sortieren der Ergebnisse bei Showuploads
-- Bild für mehrere Ger#te verfügbar machen + Blauer Hintergrund l?schen
+- Bild für mehrere Ger#te verfügbar machen + Blauer Hintergrund läschen
 - umbenennen und teilen bei showuploads
-- Registrieren Button bei Index eine FUnktion zuweisen #DONE
+- Registrieren button löschen
 
 - schöner avatar bei neu erstelltem Profil
 RESPONSIVE
@@ -15,4 +13,3 @@ RESPONSIVE
 
 Gibt es ein Problem mit dem Profilbild bei verschiedenen Nutzern - gleicher Profilbildname, weil Speicherung in einem Ordner?
 
---- Leerzeichen entfernen und Löschvorgänge überprüfen  #DONE

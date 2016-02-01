@@ -6,7 +6,7 @@ $directorywert = md5($_SESSION['email']);
 
 // Dateien werden in den jeweiligen Ordner basierend auf dem Email Hash abgelegt
 $target_dir = "uploads/$directorywert/";
-// Mithilfe von preg_replace werden ungültige Zeichen, die zu Problemen führen können, ersetzt.
+// Mithilfe von preg_replace werden ungï¿½ltige Zeichen, die zu Problemen fï¿½hren kï¿½nnen, ersetzt.
 $olduserfile = $_FILES["file"]["name"];
 $middleuserfile = preg_replace ("([^\w\s\d\-_~,;:\[\]\(\).])", '', $olduserfile);
 $newuserfile = preg_replace('/\s+/', '_', $middleuserfile);
@@ -26,7 +26,7 @@ if (file_exists($target_file)) {
 }
 
 // Check file size
-if ($_FILES["file"]["size"] > 524288000) {
+if ($_FILES["file"]["size"] > 13107200) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
 }

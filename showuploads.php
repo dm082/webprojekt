@@ -76,6 +76,7 @@ if (is_dir($dir)){
 
     <!-- Sobald der Link gedr�ckt wird, wird das "n�chste" tr Element in Bezug auf a ausgeblendet-->
     <script>
+        /*LÖSCHEN ----------------------------*/
         $(document).ready(function () {
             $(".delete").click(function () {
                 //oben event
@@ -98,12 +99,14 @@ if (is_dir($dir)){
         });
     </script>
 
+    <!-- Teilen Funktion -------------------------------------------------------------------------------->
     <script>
         $(document).ready(function () {
             $(".share").click(function () {
                 var element = $(this);
                 var share_id = element.attr("id");
-                var share_info = 'http://mars.iuk.hdm-stuttgart.de/~kk111/webprojekt2/' + share_id;
+                var share_info = 'http://mars.iuk.hdm-stuttgart.de/~dm082/phptest/' + share_id;
+                alert (share_info);
                 $.ajax({
                     type: "POST",
                     url: ("#myModal").val("nachricht"),
@@ -115,12 +118,42 @@ if (is_dir($dir)){
             });
         });
 
+        /* LINK Versenden -------------------------------------*/
+        $(document).ready(function () {
+            $(".linkinfo").click(function () {
+                $( "#dialog" ).dialog();
+                var element = $(this);
+                var share_id = element.attr("id");
+                var share_info = 'http://mars.iuk.hdm-stuttgart.de/~dm082/phptest/' + share_id;
+                alert (share_info);
+            });
+        });
+
+        /* Umbenennen ------------------------------------------------------------*/
+        $(document).ready(function () {
+            $(".senden").click(function(){
+                var neuername = $(this).prev('input').val();
+                alert(neuername);
+
+                var element = $(this);
+                var share_id = element.attr("id");
+                var info = 'id=' + share_id;
+                var share_info = 'http://mars.iuk.hdm-stuttgart.de/~dm082/phptest/' + share_id;
+                $.ajax({
+                    type: "POST",
+                    url: "rename.php",
+                    data: info,
+                    success: function () {
+                    }
+                });
+                return false;
+            });
+        });
     </script>
 
 
 </head>
 <body>
-
 <div>
     <div class="nav">
         <div class="container">
@@ -165,8 +198,8 @@ if (is_dir($dir)){
                             <td><a href='$placeoffile'>$file </a></td>
                             <td>$extension</td>
                             <td>$prettysize</td>
-                            <td>$placeoffile</td>
-                            <td><a><i id=$placeoffile class='ui-icon-info'></i></a></td>
+                            <td><input type='text' placeholder='Neuer Dateiname'><i id=$placeoffile class='senden fa fa-paper-plane'></i> </td>
+                            <td><a href='#infolink' data-toggle=\"modal\"><i id=$placeoffile class='linkinfo fa fa-link'></i></a></td>
                             <td><a href='#myModal' data-toggle=\"modal\"><i id=$placeoffile class='share fa fa-share'></i></a></td>
                             <td><a><i id=$placeoffile class='delete fa fa-trash'></i></a></td>
                             </tr>");
