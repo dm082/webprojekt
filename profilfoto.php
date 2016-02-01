@@ -80,6 +80,8 @@ if($uploadOK==true) {
     while ($row = $einfuegen->fetch()) {
         echo "<img src='" . $row['profilbildpfad'] . "'>";
     }
+    header("Location: profil.php");
+
 }
 else {
     echo "Upload fehlgeschlagen.";

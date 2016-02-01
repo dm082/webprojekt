@@ -39,7 +39,8 @@ if($pwvergleich == $password_hash)
 }
 else
 {
-   echo "Benutzername und/oder Passwort falsch.";
+   echo "Benutzername und/oder Passwort falsch.</br>";
+    echo "Zur&uuml;ck zur <a href='loginsite.html'>Anmeldeseite</a><br/>";
 }
 
 ?>

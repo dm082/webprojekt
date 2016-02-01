@@ -111,7 +111,7 @@
                             <form class="form-horizontal" role="form" action="edit.php" method="post">
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Altes Passwort </label>
-                                    <div class="col-lg-5">
+                                    <div class="col-lg-8">
                                         <input class="form-control" name="passwort_alt" type="password"
                                                placeholder="Gib hier dein altes Passwort ein."
                                                required>
@@ -120,7 +120,7 @@
                                 <p></p>
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Neues Passwort</label>
-                                    <div class="col-lg-5">
+                                    <div class="col-lg-8">
                                         <input class="form-control" name="passwort" type="password"
                                                placeholder="Gib hier dein neues Wunschpasswort ein." required>
                                     </div>
@@ -128,7 +128,7 @@
                                 <p></p>
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Neues Passwort wiederholen</label>
-                                    <div class="col-lg-5">
+                                    <div class="col-lg-8">
                                         <input class="form-control" name="passwort2" type="password"
                                                placeholder="Bitte wiederhole dein Wunschpasswort."
                                                required>
