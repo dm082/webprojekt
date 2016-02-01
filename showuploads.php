@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include ("connection.php");
+include("connection.php");
 $directorywert = md5($_SESSION['email']);
 $dir = "uploads/$directorywert/";
 
@@ -13,8 +13,7 @@ if ($_SESSION['loggedin'] != 1) {
     exit;
 }
 
-if( isset( $_SESSION['loggedin'] ) )
-{
+if (isset($_SESSION['loggedin'])) {
     //echo "Session-Email:". ($_SESSION['email']. "<br/>");
 }
 
@@ -43,8 +42,6 @@ function readablesize($bytes, $precision = 1)
 }
 
 
-
-
 // Open a directory, and read its contents
 /* L�uft, kann aber bald gel�scht werden da unten vorhanden
 if (is_dir($dir)){
@@ -62,7 +59,6 @@ if (is_dir($dir)){
 ?>
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,27 +68,27 @@ if (is_dir($dir)){
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script type="text/javascript"src="//cdn.jsdelivr.net/script.js/0.1/script.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/script.js/0.1/script.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <meta charset="UTF-8">
 
     <title>Meine Uploads</title>
 
-<!-- Sobald der Link gedr�ckt wird, wird das "n�chste" tr Element in Bezug auf a ausgeblendet-->
+    <!-- Sobald der Link gedr�ckt wird, wird das "n�chste" tr Element in Bezug auf a ausgeblendet-->
     <script>
-        $(document).ready(function(){
-            $(".delete").click(function(){
+        $(document).ready(function () {
+            $(".delete").click(function () {
                 //oben event
                 //alert(event.target.id);
-                    var element = $(this);
-                    var del_id = element.attr("id");
-                    var info = 'id=' + del_id;
-                if(confirm("Are you sure you want to delete this?"))
-                {
+                var element = $(this);
+                var del_id = element.attr("id");
+                var info = 'id=' + del_id;
+                if (confirm("Are you sure you want to delete this?")) {
                     $.ajax({
                         type: "POST",
                         url: "delete.php",
                         data: info,
-                        success: function(){
+                        success: function () {
                         }
                     });
                     $(this).closest('tr').fadeOut('slow');
@@ -101,6 +97,27 @@ if (is_dir($dir)){
             });
         });
     </script>
+
+    <script>
+        $(document).ready(function () {
+            $(".share").click(function () {
+                var element = $(this);
+                var share_id = element.attr("id");
+                var share_info = 'http://mars.iuk.hdm-stuttgart.de/~kk111/webprojekt2/' + share_id;
+                $.ajax({
+                    type: "POST",
+                    url: ("#myModal").val("nachricht"),
+                    data: share_info,
+                    success: function () {
+                    }
+                });
+                return false;
+            });
+        });
+
+    </script>
+
+
 </head>
 <body>
 
@@ -122,7 +139,8 @@ if (is_dir($dir)){
 
 <div id="tablecontainer">
     <h1>Directory Contents</h1>
-    <div id="load" align="center"><img src="images/loading.gif" width="28" height="28" align="absmiddle"/> Loading...</div>
+    <div id="load" align="center"><img src="images/loading.gif" width="28" height="28" align="absmiddle"/> Loading...
+    </div>
     <table class="userfiles">
         <thead>
         <tr>
@@ -134,34 +152,69 @@ if (is_dir($dir)){
         </thead>
         <tbody>
         <?php
-            if (is_dir($dir)){
-                if ($dh = opendir($dir)){
-                    while (($file = readdir($dh)) !== false){
-                        if($file != "." && $file != ".."){
-                            $extension = pathinfo($file, PATHINFO_EXTENSION);
-                            $size = filesize($dir.$file);
-                            $prettysize = readablesize($size);
-                            $placeoffile = ($dir.$file);
-                            echo("
+        if (is_dir($dir)) {
+            if ($dh = opendir($dir)) {
+                while (($file = readdir($dh)) !== false) {
+                    if ($file != "." && $file != "..") {
+                        $extension = pathinfo($file, PATHINFO_EXTENSION);
+                        $size = filesize($dir . $file);
+                        $prettysize = readablesize($size);
+                        $placeoffile = ($dir . $file);
+                        echo("
                             <tr class='active'>
                             <td><a href='$placeoffile'>$file </a></td>
                             <td>$extension</td>
                             <td>$prettysize</td>
                             <td>$placeoffile</td>
-                            <td><a><i class='fa fa-share'></i></a></td>
+                            <td><a><i id=$placeoffile class='ui-icon-info'></i></a></td>
+                            <td><a href='#myModal' data-toggle=\"modal\"><i id=$placeoffile class='share fa fa-share'></i></a></td>
                             <td><a><i id=$placeoffile class='delete fa fa-trash'></i></a></td>
                             </tr>");
-                        }
                     }
-                    closedir($dh);
                 }
+                closedir($dh);
             }
+        }
         ?>
-
 
 
         </tbody>
     </table>
+
+    <!-- Modal HTML -->
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Datei als Anhang versenden</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="empfaenger" class="control-label">Empfänger:</label>
+                            <input type="email" placeholder="E-Mail" required maxlength="40" class="form-control"
+                                   id="empfaenger">
+                        </div>
+                        <div class="form-group">
+                            <label for="betreff" class="control-label">Betreff:</label>
+                            <input type="text" required maxlength="40" class="form-control" id="betreff">
+                        </div>
+                        <div class="form-group">
+                            <label for="nachricht" class="control-label">Nachricht (max. 250 Zeichen):</label>
+                            <input maxlength="250" class="form-control" id="nachricht"
+                                   value="Der Absender möchte folgende Daten mit Ihnen teilen: $_POST["
+                                   share_info"]</input>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">Senden</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 </body>
