@@ -22,8 +22,10 @@ if ($pw == $pw2)
         $password_hash = hash('sha256', $salted_password);
         $profilbildpfad = "http://placehold.it/200x200";
 
-        echo "Gl&uuml;ckwunsch zur Registrierung <br /> ";
-        echo "<a href='loginsite.html'>Einloggen</a><br/>";
+     //   echo "Gl&uuml;ckwunsch zur Registrierung <br /> ";
+    //    echo "<a href='loginsite.html'>Einloggen</a><br/>";
+
+        header("Location: firstloginsite.html");
 
         /*Es wird gecheckt ob der neue Ordner, bestehend aus dem Hashwert der Email bereits existiert
         (Sehr unwarscheinlich) -> Falls es keinen gibt, wird einer erstellt */
