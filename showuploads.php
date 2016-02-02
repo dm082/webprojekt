@@ -184,6 +184,7 @@ if (is_dir($dir)){
 
 <div id="tablecontainer">
     <h1>Directory Contents</h1>
+
     <div id="load" align="center"><img src="images/loading.gif" width="28" height="28" align="absmiddle"/> Loading...
     </div>
     <table class="userfiles">
@@ -205,6 +206,10 @@ if (is_dir($dir)){
                         $size = filesize($dir . $file);
                         $prettysize = readablesize($size);
                         $placeoffile = ($dir . $file);
+
+                        $arrayy[]=(scandir($dir));
+                        sort ($arrayy, SORT_REGULAR);
+                        foreach ($arrayy as $datei){
                         echo("
                             <tr class='active'>
                             <td><input class='testtt' type='text'><a id='name' href='$placeoffile'><span>$file</span></a></td>
@@ -214,12 +219,13 @@ if (is_dir($dir)){
                             <td><a href='#infolink' data-toggle=\"modal\"><i id=$placeoffile class='linkinfo fa fa-link'></i></a></td>
                             <td><a href='#myModal' data-toggle=\"modal\"><i id=$placeoffile class='share fa fa-share'></i></a></td>
                             <td><a><i id=$placeoffile class='delete fa fa-trash'></i></a></td>
-                            </tr>");
+                            </tr>");}
                     }
                 }
-                closedir($dh);
             }
+            closedir($dh);
         }
+
         ?>
 
 
@@ -265,9 +271,3 @@ if (is_dir($dir)){
 
 </body>
 </html>
-
-
-
-
-
-
