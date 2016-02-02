@@ -106,7 +106,6 @@ if (is_dir($dir)){
                 var element = $(this);
                 var share_id = element.attr("id");
                 var share_info = 'http://mars.iuk.hdm-stuttgart.de/~dm082/phptest/' + share_id;
-                alert (share_info);
                 $.ajax({
                     type: "POST",
                     url: ("#myModal").val("nachricht"),
@@ -117,18 +116,6 @@ if (is_dir($dir)){
                 return false;
             });
         });
-
-        /* LINK Versenden -------------------------------------*/
-        /* $(document).ready(function () {
-            $(".linkinfo").click(function () {
-                $( "#dialog" ).dialog();
-                var element = $(this);
-                var share_id = element.attr("id");
-                var share_info = 'http://mars.iuk.hdm-stuttgart.de/~dm082/phptest/' + share_id;
-                alert (share_info);
-            });
-        });
-*/
         /* Umbenennen ------------------------------------------------------------*/
         $(document).ready(function () {
             $(".senden").click(function(){
@@ -153,14 +140,30 @@ if (is_dir($dir)){
                 $("#tablecontainer").load("showuploads.php");
             })
         });
-
+        /* Insert Field */
         $(document).ready(function () {
             $(".linkinfo").click(function () {
                 $(".testtt").toggleClass("visible");
             })
         });
 
+    </script>
 
+    <!-- Ein und Ausblenden der PopOvers ----------------------------->
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="popover"]').popover();
+        });
+    </script>
+
+    <script>
+        $('html').on('mouseup', function(e) {
+            if(!$(e.target).closest('.popover').length) {
+                $('.popover').each(function(){
+                    $(this.previousSibling).popover('hide');
+                });
+            }
+        });
     </script>
 
 
@@ -211,8 +214,8 @@ if (is_dir($dir)){
                             <td>$extension</td>
                             <td>$prettysize</td>
                             <td><input type='text' placeholder='Neuer Dateiname'><i id=$placeoffile class='senden fa fa-paper-plane'></i> </td>
-                            <td><a href='#infolink' data-toggle=\"modal\"><i id=$placeoffile class='linkinfo fa fa-link'></i></a></td>
-                            <td><a href='#myModal' data-toggle=\"modal\"><i id=$placeoffile class='share fa fa-share'></i></a></td>
+                            <td><a href='#' title='Ihr Link' data-toggle='popover' data-trigger='click' data-placement='left' data-content='https://mars.iuk.hdm-stuttgart.de/~dm082/phptest/$placeoffile'><i id=$placeoffile class='linkinfo fa fa-link'></i></a></td>
+                            <td><a href='#myModal'  data-toggle=\"modal\"><i id=$placeoffile class='share fa fa-share'></i></a></td>
                             <td><a><i id=$placeoffile class='delete fa fa-trash'></i></a></td>
                             </tr>");
                     }
@@ -248,9 +251,7 @@ if (is_dir($dir)){
                         </div>
                         <div class="form-group">
                             <label for="nachricht" class="control-label">Nachricht (max. 250 Zeichen):</label>
-                            <input maxlength="250" class="form-control" id="nachricht"
-                                   value="Der Absender möchte folgende Daten mit Ihnen teilen: $_POST["
-                                   share_info"]</input>
+                            <textarea maxlength="250" class="form-control" id="nachricht">Der Absender möchte folgende Daten mit Ihnen teilen: https://mars.iuk.hdm-stuttgart.de/~dm082/phptest/<?php echo $placeoffile; ?></textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary">Senden</button>

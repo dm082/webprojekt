@@ -8,13 +8,32 @@
     <link href="main.css" rel="stylesheet">
     <title>Unser Projekt</title>
 
+
+    <!-- Scrollen zum jeweiligen Abschnitt ----------------->
     <script>
-        $(document).ready(function(){
-            $(".cta").click(function(){
-                $('html, body').animate({ scrollTop: ($(register).offset().top)}, 'slow');
+        $(document).ready(function() {
+            $(".cta").click(function () {
+                $('html, body').animate({scrollTop: ($(register).offset().top)}, 'slow');
             });
+
+            $(document).ready(function () {
+                $(".testimonialscroll").click(function () {
+                    $('html, body').animate({scrollTop: ($(scrolltestimonial).offset().top)}, 'slow');
+                })
+            });
+
+            $(document).ready(function () {
+                $(".aboutscroll").click(function () {
+                    $('html, body').animate({scrollTop: ($(scrollabout).offset().top)}, 'slow');
+                })
+            })
         });
     </script>
+
+
+
+
+
 </head>
 
 
@@ -28,8 +47,8 @@
             </ul>
             <ul class="pull-right">
                 <li><a href="logout.php">Logout</a></li>
-                <li><a href="#">Download</a></li>
-                <li><a href="profil.php">Profil</a></li>
+                <li><a class="testimonialscroll" href="javascript:void(0)">Testimonial</a></li>
+                <li><a class="aboutscroll" href="javascript:void(0)">About</a></li>
                 <li><a href="loginsite.html">Login</a></li>
             </ul>
         </div>
@@ -42,13 +61,14 @@
             <span id="highlight">die du jemals</span><br>
             brauchen wirst.</p>
         <div class="bigbutton row">
-            <a role ="button" class="cta col-md-2 col-md-offset-4 hvr-sweep-to-right" href="javascript:void(0);" >Registrieren</a>
+            <a id="ctaa" role ="button" class="cta col-md-2 col-md-offset-4 hvr-sweep-to-right" href="javascript:void(0);" >Registrieren</a>
         </div>
     </div>
 </div>
 
 <!-------------------------------------Testimonials---------------------------------------------------->
 <div class="testimonials">
+    <div id="scrolltestimonial"></div>
     <h2 class="col-md-offset-5">Testimonials</h2>
     <p class=" col-md-offset-2 testimonial">
         <span class="quote1 quote">"</span>
@@ -60,7 +80,9 @@
     <small class="author col-md-offset-5">Kevin Jones - Rolling Stone Magazine</small>
 </div>
 
+<!------------------------------------About------------------------------------------------------------->
 <div class="about">
+    <div id="scrollabout"></div>
     <h2 class="col-md-offset-5">&Uuml;ber uns</h2>
     <p class="abouttext col-md-offset-2">Sweet roll cupcake chocolate cake cake marshmallow tootsie roll.
         Bonbon lemon drops macaroon wafer. Carrot cake powder toffee

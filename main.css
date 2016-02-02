@@ -442,7 +442,7 @@ h2 {
     transform: scaleX(1);
     border-radius: 5px;
 }
-
+/* Input Feld bei Showuploads.php -------------------------------------------*/
 .testtt {
     position: relative;
     left: 100px;
@@ -453,4 +453,51 @@ h2 {
 .visible {
     opacity: 1;
     z-index: 1;
+}
+
+
+/* Popover Link bei Showuploads------------------------------------------------*/
+
+.popover {
+    border: 0px solid #98d2e6;
+}
+/* Popover Header */
+.popover-title {
+    background-color: #98d2e6;
+    color: #fff;
+    font-size: 18px;
+    text-align:center;
+}
+/* Popover Body */
+.popover-content {
+    background-color: #205379;
+    color: #FFFFFF;
+    padding: 20px;
+    border-radius: 0 0 5px 5px;
+}
+
+.popover-content li {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.popover-content {
+    word-break: break-all;
+}
+
+/*Scrollen der Navigation */
+#scrolltestimonial {
+    background-color: #fff;
+    opacity:0;
+    z-index: -1;
+    position: absolute;
+    top: 93vh;
+}
+
+#scrollabout {
+    background-color: #fff;
+    opacity:0;
+    z-index: -1;
+    position: absolute;
+    top: 123vh;
 }
