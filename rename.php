@@ -2,6 +2,9 @@
 
 session_start();
 
+
+
+
 // Email Wert wird verhasht um "anonyme" Ordner zu erhalten
 $directorywert = md5($_SESSION['email']);
 
@@ -10,16 +13,22 @@ $target_dir = "uploads/$directorywert/";
 // Mithilfe von preg_replace werden ungültige Zeichen, die zu Problemen führen können, ersetzt.
 
 /* Erhalten der Variablen durch Ajax von showuploads.php*/
-$altername = $_POST['info'];
-$namenswunsch = $_POST['neuername'];
+$altername = $_POST['pk'];
+$namenswunsch = $_POST['value'];
 
 /* Zerlegen der Variable in Name und Endung*/
 $path_parts = pathinfo($altername);
 $nameohneendung = $path_parts['filename'];
 $namenextension = $path_parts['extension'];
 
+/*Zerlegen des Namenswunsches in Variable und Endung um Endung nicht zu berücksichtigen */
+$path_parts = pathinfo($namenswunsch);
+$wunschname = $path_parts['filename'];
+$wunschendung = $path_parts['extension'];
+
+
 /* Hier werden Zeichen zum Schutz vor Komplikationen geändert*/
-$namensänderung = $namenswunsch;
+$namensänderung = $wunschname;
 $ersteÄnderung = preg_replace ("([^\w\s\d\-_~,;:\[\]\(\).])", '', $namensänderung);
 $zweiteÄnderung = preg_replace('/\s+/', '_', $ersteÄnderung);
 

@@ -65,19 +65,22 @@ if (is_dir($dir)){
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="main.css" rel="stylesheet">
     <link href="showuploads.css" rel="stylesheet">
+    <link href="css/bootstrap-editable.css" rel="stylesheet"/>
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/jeditable.js"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/script.js/0.1/script.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-editable.min.js"></script>
     <meta charset="UTF-8">
+    <!-- main.js -->
+    <script src="js/main.js"></script>
 
     <title>Meine Uploads</title>
 
-    <!-- Sobald der Link gedr�ckt wird, wird das "n�chste" tr Element in Bezug auf a ausgeblendet-->
+    <!-- Sobald der Link gedrückt wird, wird das "nächste" tr Element in Bezug auf a ausgeblendet-->
     <script>
-        /*LÖSCHEN ----------------------------*/
+        /*--------------------------------LÖSCHEN ----------------------------*/
         $(document).ready(function () {
             $(".delete").click(function () {
                 //oben event
@@ -100,23 +103,8 @@ if (is_dir($dir)){
         });
     </script>
 
-    <!-- Teilen Funktion -------------------------------------------------------------------------------->
-    <script>
-        $(document).ready(function () {
-            $(".share").click(function () {
-                var element = $(this);
-                var share_id = element.attr("id");
-                var share_info = 'http://mars.iuk.hdm-stuttgart.de/~dm082/phptest/' + share_id;
-                $.ajax({
-                    type: "POST",
-                    url: ("#myModal").val("nachricht"),
-                    data: share_info,
-                    success: function () {
-                    }
-                });
-                return false;
-            });
-        });
+   <!--
+   <script>
         /* Umbenennen ------------------------------------------------------------*/
         $(document).ready(function () {
             $(".senden").click(function(){
@@ -148,12 +136,15 @@ if (is_dir($dir)){
             })
         });
 
-    </script>
 
-    <!-- Ein und Ausblenden der PopOvers ----------------------------->
+
+    </script> -->
+
+    <!-- Erscheinen des Linkinfo Felds-------------------------------->
     <script>
         $(document).ready(function(){
             $('[data-toggle="popover"]').popover();
+            $.fn.editable.defaults.mode = 'inline';
         });
     </script>
 
@@ -168,8 +159,36 @@ if (is_dir($dir)){
     </script>
 
 
+    <!-- Umbennen des Dateinamens - Inline! -->
+    <script>
+        $(function(){
+            $.fn.editable.defaults.mode = 'inline';
+            $('.publicname-change').editable({
+                    type: 'text',
+                    name: 'share_id',
+                    url: 'rename.php',
+                    pk: 1,
+                    placement: 'top',
+                    send: 'always',
+                    title: 'Enter public name',
+                    toggle: 'manual',
+                    success: function(){
+                        $("#filename").load("showuploads.php #filename");
+                    }
+                });
+
+            $('.edit').click(function(e){
+                e.stopPropagation();
+                $(this).parent().prev('td').prev('td').prev('td').find('a').editable('toggle');
+            });
+            });
+    </script>
+
+
+
 </head>
 <body>
+
 <div>
     <div class="nav">
         <div class="container">
@@ -188,18 +207,16 @@ if (is_dir($dir)){
 
 <div id="tablecontainer">
     <h1>Directory Contents</h1>
-    <div id="load" align="center"><img src="images/loading.gif" width="28" height="28" align="absmiddle"/> Loading...
     </div>
     <table class="userfiles">
         <thead>
         <tr>
             <th>Filename</th>
-            <th>Type</th>
+            <th class="bitte">Type</th>
             <th>Size</th>
-            <th>Date Modified</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="tbodytest">
         <?php
         if (is_dir($dir)) {
             if ($dh = opendir($dir)) {
@@ -211,10 +228,11 @@ if (is_dir($dir)){
                         $placeoffile = ($dir . $file);
                         echo("
                             <tr class='active'>
-                            <td><input class='testtt' type='text'><a id='name' href='$placeoffile'><span>$file</span></a></td>
+                            <td class='dateiname'><!--<input class='testtt' type='text'>--><a id='name' class='publicname-change' data-pk='$placeoffile' data-type='text' href='$placeoffile'><span>$file</span></a></td>
                             <td>$extension</td>
                             <td>$prettysize</td>
-                            <td><input type='text' placeholder='Neuer Dateiname'><i id=$placeoffile class='senden fa fa-paper-plane'></i> </td>
+                            <!-- <td><input type='text' placeholder='Neuer Dateiname'><i id=$placeoffile class='senden fa fa-paper-plane'></i> </td> -->
+                            <td class=''><a class='edit'><i class=' fa fa-pencil-square-o'></i></a></td>
                             <td><a href='#' title='Ihr Link' data-toggle='popover' data-trigger='click' data-placement='left' data-content='https://mars.iuk.hdm-stuttgart.de/~dm082/phptest/$placeoffile'><i id=$placeoffile class='linkinfo fa fa-link'></i></a></td>
                             <td><a href='#myModal'  data-toggle=\"modal\"><i id=$placeoffile class='share fa fa-share'></i></a></td>
                             <td><a><i id=$placeoffile class='delete fa fa-trash'></i></a></td>
@@ -225,8 +243,6 @@ if (is_dir($dir)){
             }
         }
         ?>
-
-
         </tbody>
     </table>
 </div>
