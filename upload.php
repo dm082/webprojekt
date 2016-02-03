@@ -6,7 +6,7 @@ $directorywert = md5($_SESSION['email']);
 
 // Dateien werden in den jeweiligen Ordner basierend auf dem Email Hash abgelegt
 $target_dir = "uploads/$directorywert/";
-// Mithilfe von preg_replace werden ung�ltige Zeichen, die zu Problemen f�hren k�nnen, ersetzt.
+// Mithilfe von preg_replace werden ungültige Zeichen, die zu Problemen führen künnen, ersetzt.
 $olduserfile = $_FILES["file"]["name"];
 $middleuserfile = preg_replace ("([^\w\s\d\-_~,;:\[\]\(\).])", '', $olduserfile);
 $newuserfile = preg_replace('/\s+/', '_', $middleuserfile);
@@ -15,24 +15,24 @@ $newuserfile = preg_replace('/\s+/', '_', $middleuserfile);
 $target_file = $target_dir . basename($newuserfile);
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-// Check if image file is a actual image or fake image
+// Kontrolle, ob Bild Fake ist
 
 
 
-// Check if file already exists
+// Kontrolle, ob Datei bereits existiert
 if (file_exists($target_file)) {
-    echo "The file already exists.<br/>";
+    echo "Die Datei ist bereits vorhanden.<br/>";
     $uploadOk = 0;
 }
 
-// Check file size
+// Kontrolliert die Dateigröße
 if ($_FILES["file"]["size"] > 13107200) {
-    echo "Sorry, your file is too large.";
+    echo "Die Datei ist zu groß.";
     $uploadOk = 0;
 }
 
 
-//------------------------------- Allow certain file formats-------------------------------------------
+//------------------------------- Verschiedene Dateiformate-------------------------------------------
 /**
 if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
     && $imageFileType != "gif" ) {
@@ -42,18 +42,19 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
 //------------------------------- END allow file formats-------------------------------------------*/
 
 
-//------------------------------- Check if $uploadOk is set to 0 by an error ------------------------
+//------------------------------- Lädt hoch, wenn $uploadOk gleich 0------------------------
 if ($uploadOk == 0) {
-    echo "Therefore, your file was not uploaded.<br/>";
-    echo "View your <a href='showuploads.php'>files</a>";
-// if everything is ok, try to upload file
+    echo "Deine Daten wurde nicht hochgeladen.<br/>";
+    echo "Weiter zu deinen <a href='showuploads.php'>Dateien.</a>";
+// Wenn alles passt, Datei hochladen
 } else {
     if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-        echo "The file ". basename($olduserfile). " has been uploaded.<br/>";
-        echo "View your <a href='showuploads.php'>files</a>";
+        chmod($target_file, 0600);
+        echo "Die Datei ". basename($olduserfile). " wurde erfolgreich hochgeladen.<br/>";
+        echo "Weiter zu deinen <a href='showuploads.php'>Dateien.</a>";
     } else {
-        echo "Sorry, there was an error uploading your file.<br/>";
-        echo "View your <a href='showuploads.php'>files</a>";
+        echo "Es gab ein Problem beim Hochladen deiner Datei.<br/>";
+        echo "Weiter zu deinen <a href='showuploads.php'>Dateien.</a>";
     }
 }
 ?>

@@ -136,11 +136,10 @@ input[type=file] {
 }
 
 @media screen and (min-width:320px) {
-    /*CSS-Regeln  eventuell*/
 
     .nav {
-        float:left
-        width:25%
+        float:left;
+        width:25%;
     }
 
     .pull-left {

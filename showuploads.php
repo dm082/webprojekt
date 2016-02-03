@@ -69,7 +69,7 @@ if (is_dir($dir)){
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
-    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-editable.min.js"></script>
     <meta charset="UTF-8">
@@ -102,49 +102,13 @@ if (is_dir($dir)){
             });
         });
     </script>
-
-   <!--
-   <script>
-        /* Umbenennen ------------------------------------------------------------*/
-        $(document).ready(function () {
-            $(".senden").click(function(){
-                var neuername = $(this).prev('input').val();
-                alert(neuername);
-                var element = $(this);
-                var share_id = element.attr("id");
-                var info =  share_id;
-                var share_info = 'http://mars.iuk.hdm-stuttgart.de/~dm082/phptest/' + share_id;
-                $.ajax({
-                    type: "POST",
-                    url: "rename.php",
-                    data: {info: info, neuername:neuername} ,
-                    success: function () {
-                    }
-                });
-                return false;
-            });
-        });
-        $(document).ready(function () {
-            $(".senden").click(function () {
-                $("#tablecontainer").load("showuploads.php");
-            })
-        });
-        /* Insert Field */
-        $(document).ready(function () {
-            $(".linkinfo").click(function () {
-                $(".testtt").toggleClass("visible");
-            })
-        });
-
-
-
-    </script> -->
-
     <!-- Erscheinen des Linkinfo Felds-------------------------------->
     <script>
-        $(document).ready(function(){
-            $('[data-toggle="popover"]').popover();
-            $.fn.editable.defaults.mode = 'inline';
+        $(document).ready(function() {
+            $(document).on('click', '.linkinfo', function (e) {
+                $('[data-toggle="popover"]').popover();
+                $.fn.editable.defaults.mode = 'inline';
+            })
         });
     </script>
 
@@ -158,11 +122,11 @@ if (is_dir($dir)){
         });
     </script>
 
-    <!-- Umbennen des Dateinamens - Inline! -->
+
+    <!-- Umbennen und Neuladen des Dateinamens - Inline! ------------------>
     <script>
         $(function() {
             $.fn.editable.defaults.mode = 'inline';
-
             $(document).on('click', '.edit', function (e) {
                 e.stopPropagation();
                 $(this).parent().prev('td').prev('td').prev('td').find('a').editable('toggle');
@@ -175,29 +139,31 @@ if (is_dir($dir)){
                 $.ajax({
                     url: "rename.php",
                     type: 'POST',
-                    data: {value: value,pk: pkk, name}
-                    /* LÖSCHEN DIESES ABSCHNITTS
-                    type:  'text',
-                    pk:    1,
-                    name:  'username',
-                    url:   'rename.php',
-                    title: 'Enter username',
-                    send: 'always',
-                    toggle: 'manual'*/
+                    data: {value: value,pk: pkk, name},
+                    success: function(){
+                        $("#nachricht").load("showuploads.php #nachricht");
+                    }
                 });
             });
 
             $(document).on('click', '.editable-submit', function (e) {
                 $("#userfiles").load("showuploads.php #userfiles");
             });
-
         });
     </script>
+
+<script>
+    $(document).on("click", ".share", function () {
+        var newId = $(this).attr('id');
+        $(".modal-body #modalshare").val( newId );
+    });
+</script>
+
+
 
 
 </head>
 <body>
-
 <div>
     <div class="nav">
         <div class="container">
@@ -221,7 +187,7 @@ if (is_dir($dir)){
         <thead>
         <tr>
             <th>Filename</th>
-            <th class="bitte" id="hmm">Type</th>
+            <th >Type</th>
             <th>Size</th>
         </tr>
         </thead>
@@ -235,15 +201,15 @@ if (is_dir($dir)){
                         $size = filesize($dir . $file);
                         $prettysize = readablesize($size);
                         $placeoffile = ($dir . $file);
+                        $fullpath = 'https://mars.iuk.hdm-stuttgart.de/~dm082/phptest/'.$placeoffile;
                         echo("
                             <tr class='active'>
-                            <td class='dateiname'><!--<input class='testtt' type='text'>--><a id='name' class='publicname-change' data-name='$file' data-pk='$placeoffile' data-type='text' href='$placeoffile'><span>$file</span></a></td>
+                            <td class='dateiname'><a id='name' class='publicname-change' data-name='$file' data-pk='$placeoffile' data-type='text' href='$placeoffile'><span>$file</span></a></td>
                             <td>$extension</td>
                             <td>$prettysize</td>
-                            <!-- <td><input type='text' placeholder='Neuer Dateiname'><i id=$placeoffile class='senden fa fa-paper-plane'></i> </td> -->
                             <td class=''><a class='edit'><i class=' fa fa-pencil-square-o'></i></a></td>
                             <td><a href='#' title='Ihr Link' data-toggle='popover' data-trigger='click' data-placement='left' data-content='https://mars.iuk.hdm-stuttgart.de/~dm082/phptest/$placeoffile'><i id=$placeoffile class='linkinfo fa fa-link'></i></a></td>
-                            <td><a href='#myModal'  data-toggle=\"modal\"><i id=$placeoffile class='share fa fa-share'></i></a></td>
+                            <td><a href='#myModal'  data-toggle=\"modal\"><i id='$fullpath' class='share fa fa-share'></i></a></td>
                             <td><a><i id=$placeoffile class='delete fa fa-trash'></i></a></td>
                             </tr>");
                     }
@@ -276,8 +242,8 @@ if (is_dir($dir)){
                             <input type="text" required maxlength="40" class="form-control" id="betreff">
                         </div>
                         <div class="form-group">
-                            <label for="nachricht" class="control-label">Nachricht (max. 250 Zeichen):</label>
-                            <textarea maxlength="250" class="form-control" id="nachricht">Der Absender möchte folgende Daten mit Ihnen teilen: https://mars.iuk.hdm-stuttgart.de/~dm082/phptest/<?php echo $placeoffile; ?></textarea>
+                            <label for="modalshare" class="control-label">Nachricht (max. 250 Zeichen):</label>
+                            <input type="text" class="form-control" id="modalshare" name="modalshare" value="lolo"/>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary">Senden</button>
@@ -293,7 +259,5 @@ if (is_dir($dir)){
 </body>
 </html>
 
-
-<!-- Kommentar -->
 
 

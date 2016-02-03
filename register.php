@@ -4,8 +4,7 @@ session_start();     //Session starten
 
 
 include_once ("connection.php");   //DB Verbindung herstellen
-// include_once("userdata.php");
-// $db = new PDO($dsn, $db_user, $db_pass);
+
 
 
 $pw = $_POST["passwort"];
@@ -31,7 +30,7 @@ if ($pw == $pw2)
         (Sehr unwarscheinlich) -> Falls es keinen gibt, wird einer erstellt */
         if(!is_dir("uploads/$user_dir"))
         {
-            mkdir("uploads/$user_dir", 0777, true);
+            mkdir("uploads/$user_dir", 0700, true);
         }
         else
         {
