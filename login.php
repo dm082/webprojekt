@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<head>
+    <link href="css/bootstrap-editable.css" rel="stylesheet"/>
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-editable.min.js"></script>
+    <meta charset="UTF-8">
+</head>
+<body>
+
 <?php
 // Session starten
 session_start ();
@@ -39,8 +49,20 @@ if($pwvergleich == $password_hash)
 }
 else
 {
-   echo "Benutzername und/oder Passwort falsch.</br>";
-    echo "Zur&uuml;ck zur <a href='loginsite.html'>Anmeldeseite</a><br/>";
+    $errorMessage = "E-Mail oder Passwort war ungültig<br>";
+    //echo "Benutzername und/oder Passwort falsch.</br>";
+    //echo "Zur&uuml;ck zur <a href='loginsite.html'>Anmeldeseite</a><br/>";
 }
 
 ?>
+<!--<script type = "text/javascript">
+    $(function(){
+        $(".close").click(function(){
+            $("#myAlert").alert('close');
+        });
+    });
+</script>
+
+</body>
+</hml>
+

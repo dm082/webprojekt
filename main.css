@@ -42,7 +42,7 @@ html body {
 /* Jumbotron BEGINN --------------------------------------------------*/
 .jumbotron {
     height: 100vh; /* Viewport Height regelt die Gr��e des Blocks entsprechend dem Bildschirm*/
-    background-color: #002846;
+    /*background-color: #002846;*/
     margin-bottom: 0px;
     background-image: url(https://images.unsplash.com/photo-1437419764061-2473afe69fc2?dpr=1.5&fit=crop&fm=jpg&h=875&ixlib=rb-0.3.5&q=66&w=1450);
     background-size: cover;
@@ -81,7 +81,8 @@ a:link {
     text-align: center;
     font-size: 22px;
     color: white;
-    background: #28d8b3;
+    background: #205379;/*#28d8b3;*/
+    border: 2px solid #e6e6e6;
     padding: 13px;
     font-weight:600;
     border-radius: 5px;
@@ -230,7 +231,7 @@ a:link {
 #righttext{
     position: relative;
     top: 10vh;
-    left: 2vw;
+    /*left: 2vw;*/
 }
 
 #submit {
@@ -262,7 +263,7 @@ a:link {
     /*border-radius: 0;*/
     width: 20vw;
     height: 5vh;
-    border: 2px solid #e3e3e3;
+    border: 2px solid #e6e6e6;
     font-size: 18px;
     font-weight: 500;
     text-transform: uppercase;
