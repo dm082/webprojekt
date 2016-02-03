@@ -163,7 +163,16 @@ if (is_dir($dir)){
     <script>
         $(function(){
             $.fn.editable.defaults.mode = 'inline';
-            $('.publicname-change').editable({
+
+            $(document).on('click', '.editable-submit', function(e){
+                $("#userfiles").load("showuploads.php #userfiles");
+            });
+
+            $(document).on('click', '.edit', function(e){
+                e.stopPropagation();
+                $(this).parent().prev('td').prev('td').prev('td').find('a').editable('toggle');
+
+                $('.publicname-change').editable({
                     type: 'text',
                     name: 'share_id',
                     url: 'rename.php',
@@ -173,14 +182,12 @@ if (is_dir($dir)){
                     title: 'Enter public name',
                     toggle: 'manual',
                     success: function(){
-                        $("#filename").load("showuploads.php #filename");
+                        $("#userfiles").load("showuploads.php #userfiles");
                     }
-                });
-
-            $('.edit').click(function(e){
-                e.stopPropagation();
-                $(this).parent().prev('td').prev('td').prev('td').find('a').editable('toggle');
+                })
             });
+
+
             });
     </script>
 
@@ -208,7 +215,7 @@ if (is_dir($dir)){
 <div id="tablecontainer">
     <h1>Directory Contents</h1>
     </div>
-    <table class="userfiles">
+    <table id="userfiles">
         <thead>
         <tr>
             <th>Filename</th>
@@ -216,7 +223,7 @@ if (is_dir($dir)){
             <th>Size</th>
         </tr>
         </thead>
-        <tbody id="tbodytest">
+        <tbody>
         <?php
         if (is_dir($dir)) {
             if ($dh = opendir($dir)) {

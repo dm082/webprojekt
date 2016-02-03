@@ -1,7 +1,7 @@
 <?php
 
 
-$info = $_POST['share_info'];
+$info = $_POST['info'];
 echo $info;
 
 ?>
