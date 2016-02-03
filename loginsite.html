@@ -11,6 +11,14 @@
 </head>
 
 <body>
+
+<?php
+include(login.php);
+if(isset($errorMessage)) {
+	echo $errorMessage;
+}
+?>
+
 <div class="loginsite">
     <div class="loginbox">
             <div class="firstcard"></div>
@@ -30,7 +38,7 @@
                     <div class="button-container">
                         <button type="submit" name="logmein"><span>Go</span></button>
                     </div>
-                    <div class="cardfooter"><a href="#">Passwort vergessen?</a></div>
+                    <div class="cardfooter"><!--<a href="#">Passwort vergessen?</a></div>--->
                 </form>
             </div>
         </div>

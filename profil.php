@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=1.0" />
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="profil.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     <script src="./js/dropzone.js"></script>
     <link href="./css/basic.css" rel="stylesheet">
@@ -14,10 +14,35 @@
     <script type="text/javascript" src="//cdn.jsdelivr.net/script.js/0.1/script.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link href="js/bootstrap.min.js">
-
+    <link href="profil.css" rel="stylesheet">
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="js/main.js"></script>
 </head>
 
 <body>
+
+
+<script>
+    /*--------------------------------Passwort falsch ----------------------------*/
+    $(document).ready(function () {
+        $(".passwort_alt").click(function () {
+            var passwort_alt =  $("passwort_alt").attr("passwort_alt");
+            alert (passwort_alt);
+                $.ajax({
+                    type: "POST",
+                    url: "edit.php",
+                    data: passwort_alt,
+                    success: function () {
+                    }
+                });
+            }
+            return false;
+        });
+    });
+</script>
+
+
+
 <div>
     <div class="nav">
         <div class="container">
@@ -27,7 +52,7 @@
             <ul class="pull-right">
                 <li><a href="uploadseitee.html">Upload</a></li>
                 <li><a href="profil.php">Profil</a></li>
-                <li><a href="showuploads.php">Übersicht</a></li>
+                <li><a href="showuploads.php">&Uuml;bersicht</a></li>
                 <li><a href="logout.php">Logout</a></li>
             </ul>
         </div>
@@ -35,10 +60,13 @@
 </div>
 
 
-<div class="card hovercard">
-    <div class="cardheader"></div>
-    <div>
-        <a>
+
+<!-- Profil -->
+
+<div class="profil">
+    <div class="profilkopf"></div>
+    <div class="profilbody">
+        <div class="profilpic">
             <?php
             include('connection.php');
             $einfuegen = $db->prepare('SELECT * FROM User WHERE email = :email');
@@ -52,124 +80,88 @@
                 echo "<img src='" . $row['profilbildpfad'] . "'>";
             };
             ?>
-        </a>
+    </div>
 
-
-        <div class="title">
-            <a data-toggle="modal" href="#BildModal">Profilbild ändern?</a>
-        </div>
-
-
+        <!--  Fenster für Profilbildänderung  ----->
         <div id="BildModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Profilbild ändern</h4>
+                        <h4 class="modal-title">Lade hier bitte dein neues Profilbild hoch.</h4>
                     </div>
                     <div class="modal-body">
                         <form action="profilfoto.php" method="post" enctype="multipart/form-data">
-                            <input type="file" name="bild">
-                            <input type="submit" name="upload" value="Hochladen">
+                            <input class="btn btn-primary active" type="file" name="bild" value="Datei auswählen">
+                            <input class="btn btn-primary active" type="submit" name="upload" value="Hochladen">
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="info">
-        <div class="title">
-            <h3>Mein Profil</h3>
+
+        <!-- In der DB gespeichertes Profil wird ausgegeben -->
+        <div class="info">
+            <div class="title">
+                <h3>Mein Profil</h3>
+            </div>
+            <div class="desc">
+          <?php
+            include("profilausgabe.php");
+            ?>
+         </div>
         </div>
-        <div class="desc">
-            <a>  <?php
-                include("profilausgabe.php");
-                ?>
-            </a>
+
+        <!-- Buttons für Profilbild- und Passwortänderung -->
+        <div class="btn-group">
+            <button type="button" href="#passwortModal" class="btn btn-primary" data-toggle="modal">Passwort ändern
+            </button>
+            <button type="button" href="#BildModal" class="btn btn-primary" data-toggle="modal">Profilbild ändern
+            </button>
         </div>
-    </div>
 
-
-    <div class="bs-example">
-        <!-- Button HTML (to Trigger Modal) -->
-        <button href="#passwortModal" class="btn btn-info btn-lg" data-toggle="modal">Passwort ändern</button>
-    </div>
-
-    <!-- Modal HTML -->
-    <div id="passwortModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Passwort ändern</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form-horizontal" role="form" action="edit.php" method="post">
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label">Altes Passwort </label>
-                            <div class="col-lg-8">
-                                <input class="form-control" name="passwort_alt" type="password"
-                                       placeholder="Gib hier dein altes Passwort ein."
-                                       required>
+        <!-- Modal HTML -->
+        <div id="passwortModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Passwort ändern</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form" action="edit.php" method="post">
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <input class="passwort_alt form-control" id="passwort_alt" name="passwort_alt" type="password"
+                                           placeholder="Gib hier dein altes Passwort ein."
+                                           required>
+                                </div>
                             </div>
-                        </div>
-                        <p></p>
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label">Neues Passwort</label>
-                            <div class="col-lg-8">
-                                <input class="form-control" name="passwort" type="password"
-                                       placeholder="Gib hier dein neues Wunschpasswort ein." required>
+                            <p></p>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <input class="form-control" name="passwort" type="password"
+                                           placeholder="Gib hier dein neues Wunschpasswort ein." required>
+                                </div>
                             </div>
-                        </div>
-                        <p></p>
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label">Neues Passwort wiederholen</label>
-                            <div class="col-lg-8">
-                                <input class="form-control" name="passwort2" type="password"
-                                       placeholder="Bitte wiederhole dein Wunschpasswort."
-                                       required>
+                            <p></p>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <input class="form-control" name="passwort2" type="password"
+                                           placeholder="Bitte wiederhole dein Wunschpasswort."
+                                           required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="button-container col-md-offset-4">
-                            <button class="sweep" type="submit" name="submitdata">Passwort ändern</button>
-                        </div>
-                    </form>
+                            <div class="button-container col-md-offset">
+                                <button data-trigger='click' class="btn btn-primary active" type="submit" name="submitdata">Passwort ändern</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+
+
     </div>
-
-
-</div>
-
-
-<div class="footer">
-    <small class="credits col-md-offset-2">Credits 2015 @Team OMM</small>
-    <small class="impressum col-md-offset-6"><a href="#">Impressum</a></small>
-    <div class="footer-container">
-        <div class="footer-float">
-            <ul>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Download</a></li>
-                <li><a href="#">Support</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-float">
-            <ul>
-                <li>Impressum</li>
-                <li>AGB</li>
-            </ul>
-        </div>
-
-        <div class="footer-float">
-            <ul>
-                <li><a href="#"><i class="social facebook fa fa-facebook fa-3x"></i></a></li>
-                <li><a href="#"><i class="social twitter fa fa-twitter fa-3x"></i></a></li>
-                <li><a href="#"><i class="social youtube fa fa-youtube-play fa-3x"></i></a></li>
-            </ul>
-        </div>
-    </div>
-
 </div>
 
 
