@@ -67,14 +67,16 @@ if (is_dir($dir)){
     <link href="showuploads.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/script.js/0.1/script.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+
     <meta charset="UTF-8">
 
     <title>Meine Uploads</title>
 
-    <!-- Sobald der Link gedr�ckt wird, wird das "n�chste" tr Element in Bezug auf a ausgeblendet-->
+    <!-- Sobald der Link gedrückt wird, wird das "nächste" tr Element in Bezug auf a ausgeblendet-->
     <script>
         $(document).ready(function () {
             $(".delete").click(function () {
@@ -98,6 +100,7 @@ if (is_dir($dir)){
         });
     </script>
 
+
     <script>
         $(document).ready(function () {
             $(".share").click(function () {
@@ -112,21 +115,21 @@ if (is_dir($dir)){
                     }
                 });
                 return false;
-            });
+            })
         });
 
     </script>
 
-
-
-    /* LINK Versenden ------------------------------------- */
-
     <script>
+        $(document).ready(function() {
+            $('.edit').editable('http://www.example.com/save.php');
+        });
+    </script>
 
-        $(function () {
-            $('[data-toggle="popover"]').popover()
-        })
 
+   <!-- LINK Versenden --------------------------------------->
+<!--
+    <script>
         $(document).ready(function () {
             $(".linkinfo").click(function () {
                 var element = $(this);
@@ -136,7 +139,7 @@ if (is_dir($dir)){
                 $.ajax({
                     type: "POST",
                     url: "test.php",
-                    data: share_info,
+                    data: {info:share_info},
                     success: function() {
 
                     }
@@ -144,15 +147,11 @@ if (is_dir($dir)){
                 return false;
             });
         });
-
-
     </script>
 
-
-
-
+-->
     //Dateien umbenennen
-    <script>
+    <!-- <script>
         $(document).ready(function () {
             $(".rename").click(function () {
                 //oben event
@@ -160,12 +159,13 @@ if (is_dir($dir)){
                 var element = $(this);
                 var del_id = element.attr("id");
                 var info = 'id=' + del_id;
-                $.post("rename.php", {
-                        info
-                    },
+                $.post("rename.php", {info},
                     function () {
                     }
             })
+        });
+        -
+
             /*     if (confirm("Are you sure you want to rename this?")) {
              $.ajax({
              type: "POST",
@@ -178,13 +178,32 @@ if (is_dir($dir)){
              }
              return false; */
         });
+        })
+    </script>
+-->
+
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="popover"]').popover();
         });
     </script>
 
-
+    <script>
+        $('html').on('mouseup', function(e) {
+            if(!$(e.target).closest('.popover').length) {
+                $('.popover').each(function(){
+                    $(this.previousSibling).popover('hide');
+                });
+            }
+        });
+    </script>
 
 </head>
 <body>
+<div class="edit" id="div_1">Dolor</div>
+<div class="edit_area" id="div_2">Lorem ipsum dolor sit amet, consectetuer
+    adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore
+    magna aliquam erat volutpat.</div>
 
 <div>
     <div class="nav">
@@ -204,7 +223,6 @@ if (is_dir($dir)){
 
 <div id="tablecontainer">
     <h1>Directory Contents</h1>
-    <div id="load" align="center"><img src="images/loading.gif" width="28" height="28" align="absmiddle"/> Loading...
     </div>
     <table class="userfiles">
         <thead>
@@ -227,13 +245,13 @@ if (is_dir($dir)){
                         $placeoffile = ($dir . $file);
                         echo("
                             <tr class='active'>
-                            <td><a href='$placeoffile'>$file </a></td>
+                            <td><a href='$placeoffile'><span class='filename'>$file</span> </a></td>
                             <td>$extension</td>
                             <td>$prettysize</td>
                             <td>$placeoffile</td>
                             <td><a><i id=$placeoffile class='rename fa fa-pencil-square-o'></i></a></td>
                             <td><a><i id=$placeoffile class='ui-icon-info'></i></a></td>
-                            <td><a href='#popover'   data-toggle='popover' data-placement='left'><i id=$placeoffile class='linkinfo fa fa-link'></i></a></td>
+                            <td><a href='#' title='Ihr Link'  data-toggle='popover' data-trigger='click' data-placement='left' data-content='https://mars.iuk.hdm-stuttgart.de/~dm082/phptest/$placeoffile'><i id=$placeoffile class='linkinfo fa fa-link'></i></a></td>
                             <td><a href='#myModal' data-toggle=\"modal\"><i id=$placeoffile class='share fa fa-share'></i></a></td>
                             <td><a><i id=$placeoffile class='delete fa fa-trash'></i></a></td>
                             </tr>");
@@ -294,6 +312,15 @@ if (is_dir($dir)){
             </div>
         </div>
     </div>
+
+
+<a href="#">Open Popover</a>
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+<a href="#">Open Popover 2</a>
+
+
 
 
 </body>
@@ -367,23 +394,5 @@ if (is_dir($dir)){
 */
 
 ?>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="main.css" rel="stylesheet">
-    <link href="showuploads.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/script.js/0.1/script.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <meta charset="UTF-8">
-
-    <title>Meine Uploads</title>
 
 
