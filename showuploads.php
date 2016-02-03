@@ -4,7 +4,7 @@ session_start();
 include("connection.php");
 $directorywert = md5($_SESSION['email']);
 $dir = "uploads/$directorywert/";
-/*
+
 // Check die Verbindung
 
 if ($_SESSION['loggedin'] != 1) {
@@ -40,7 +40,7 @@ function readablesize($bytes, $precision = 1)
         return $bytes . ' B';
     }
 }
-*/
+
 
 // Open a directory, and read its contents
 /* L�uft, kann aber bald gel�scht werden da unten vorhanden
@@ -65,19 +65,22 @@ if (is_dir($dir)){
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="main.css" rel="stylesheet">
     <link href="showuploads.css" rel="stylesheet">
+    <link href="css/bootstrap-editable.css" rel="stylesheet"/>
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <script type="text/javascript" src="//cdn.jsdelivr.net/script.js/0.1/script.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-
-
+    <script src="js/bootstrap-editable.min.js"></script>
     <meta charset="UTF-8">
+    <!-- main.js -->
+    <script src="js/main.js"></script>
 
     <title>Meine Uploads</title>
 
     <!-- Sobald der Link gedrückt wird, wird das "nächste" tr Element in Bezug auf a ausgeblendet-->
     <script>
+        /*--------------------------------LÖSCHEN ----------------------------*/
         $(document).ready(function () {
             $(".delete").click(function () {
                 //oben event
@@ -100,91 +103,48 @@ if (is_dir($dir)){
         });
     </script>
 
-
-    <script>
+   <!--
+   <script>
+        /* Umbenennen ------------------------------------------------------------*/
         $(document).ready(function () {
-            $(".share").click(function () {
+            $(".senden").click(function(){
+                var neuername = $(this).prev('input').val();
+                alert(neuername);
                 var element = $(this);
                 var share_id = element.attr("id");
-                var share_info = 'http://mars.iuk.hdm-stuttgart.de/~kk111/webprojekt2/' + share_id;
-                $.ajax({
-                    type: "POST",
-                    url: ("#myModal").val("nachricht"),
-                    data: share_info,
-                    success: function () {
-                    }
-                });
-                return false;
-            })
-        });
-
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $('.edit').editable('http://www.example.com/save.php');
-        });
-    </script>
-
-
-   <!-- LINK Versenden --------------------------------------->
-<!--
-    <script>
-        $(document).ready(function () {
-            $(".linkinfo").click(function () {
-                var element = $(this);
-                var share_id = element.attr("id");
+                var info =  share_id;
                 var share_info = 'http://mars.iuk.hdm-stuttgart.de/~dm082/phptest/' + share_id;
-                alert(share_info);
                 $.ajax({
                     type: "POST",
-                    url: "test.php",
-                    data: {info:share_info},
-                    success: function() {
-
+                    url: "rename.php",
+                    data: {info: info, neuername:neuername} ,
+                    success: function () {
                     }
                 });
                 return false;
             });
         });
-    </script>
-
--->
-    //Dateien umbenennen
-    <!-- <script>
         $(document).ready(function () {
-            $(".rename").click(function () {
-                //oben event
-                //alert(event.target.id);
-                var element = $(this);
-                var del_id = element.attr("id");
-                var info = 'id=' + del_id;
-                $.post("rename.php", {info},
-                    function () {
-                    }
+            $(".senden").click(function () {
+                $("#tablecontainer").load("showuploads.php");
             })
         });
-        -
-
-            /*     if (confirm("Are you sure you want to rename this?")) {
-             $.ajax({
-             type: "POST",
-             url: "rename.php",
-             data: info,
-             success: function ()  {
-             //   window.location.replace("rename.php");
-             }
-             });
-             }
-             return false; */
+        /* Insert Field */
+        $(document).ready(function () {
+            $(".linkinfo").click(function () {
+                $(".testtt").toggleClass("visible");
+            })
         });
-        })
-    </script>
--->
 
+
+
+    </script> -->
+
+    <!-- Erscheinen des Linkinfo Felds-------------------------------->
     <script>
         $(document).ready(function(){
             $('[data-toggle="popover"]').popover();
+            $.fn.editable.defaults.mode = 'inline';
         });
     </script>
 
@@ -198,12 +158,43 @@ if (is_dir($dir)){
         });
     </script>
 
+
+    <!-- Umbennen des Dateinamens - Inline! -->
+    <script>
+        $(function(){
+            $.fn.editable.defaults.mode = 'inline';
+
+            $(document).on('click', '.editable-submit', function(e){
+                $("#userfiles").load("showuploads.php #userfiles");
+            });
+
+            $(document).on('click', '.edit', function(e){
+                e.stopPropagation();
+                $(this).parent().prev('td').prev('td').prev('td').find('a').editable('toggle');
+
+                $('.publicname-change').editable({
+                    type: 'text',
+                    name: 'share_id',
+                    url: 'rename.php',
+                    pk: 1,
+                    placement: 'top',
+                    send: 'always',
+                    title: 'Enter public name',
+                    toggle: 'manual',
+                    success: function(){
+                        $("#userfiles").load("showuploads.php #userfiles");
+                    }
+                })
+            });
+
+
+            });
+    </script>
+
+
+
 </head>
 <body>
-<div class="edit" id="div_1">Dolor</div>
-<div class="edit_area" id="div_2">Lorem ipsum dolor sit amet, consectetuer
-    adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-    magna aliquam erat volutpat.</div>
 
 <div>
     <div class="nav">
@@ -224,13 +215,12 @@ if (is_dir($dir)){
 <div id="tablecontainer">
     <h1>Directory Contents</h1>
     </div>
-    <table class="userfiles">
+    <table id="userfiles">
         <thead>
         <tr>
             <th>Filename</th>
-            <th>Type</th>
+            <th class="bitte">Type</th>
             <th>Size</th>
-            <th>Date Modified</th>
         </tr>
         </thead>
         <tbody>
@@ -245,14 +235,13 @@ if (is_dir($dir)){
                         $placeoffile = ($dir . $file);
                         echo("
                             <tr class='active'>
-                            <td><a href='$placeoffile'><span class='filename'>$file</span> </a></td>
+                            <td class='dateiname'><!--<input class='testtt' type='text'>--><a id='name' class='publicname-change' data-pk='$placeoffile' data-type='text' href='$placeoffile'><span>$file</span></a></td>
                             <td>$extension</td>
                             <td>$prettysize</td>
-                            <td>$placeoffile</td>
-                            <td><a><i id=$placeoffile class='rename fa fa-pencil-square-o'></i></a></td>
-                            <td><a><i id=$placeoffile class='ui-icon-info'></i></a></td>
-                            <td><a href='#' title='Ihr Link'  data-toggle='popover' data-trigger='click' data-placement='left' data-content='https://mars.iuk.hdm-stuttgart.de/~dm082/phptest/$placeoffile'><i id=$placeoffile class='linkinfo fa fa-link'></i></a></td>
-                            <td><a href='#myModal' data-toggle=\"modal\"><i id=$placeoffile class='share fa fa-share'></i></a></td>
+                            <!-- <td><input type='text' placeholder='Neuer Dateiname'><i id=$placeoffile class='senden fa fa-paper-plane'></i> </td> -->
+                            <td class=''><a class='edit'><i class=' fa fa-pencil-square-o'></i></a></td>
+                            <td><a href='#' title='Ihr Link' data-toggle='popover' data-trigger='click' data-placement='left' data-content='https://mars.iuk.hdm-stuttgart.de/~dm082/phptest/$placeoffile'><i id=$placeoffile class='linkinfo fa fa-link'></i></a></td>
+                            <td><a href='#myModal'  data-toggle=\"modal\"><i id=$placeoffile class='share fa fa-share'></i></a></td>
                             <td><a><i id=$placeoffile class='delete fa fa-trash'></i></a></td>
                             </tr>");
                     }
@@ -261,22 +250,9 @@ if (is_dir($dir)){
             }
         }
         ?>
-
-
-
         </tbody>
     </table>
-
-    <!-- HTML to write -->
-    <a href="popover" data-toggle="popover" title="Popover!">Hover over me</a>
-
-    <!-- Generated markup by the plugin -->
-    <div class="tooltip top" role="tooltip">
-        <div class="tooltip-arrow"></div>
-        <div class="tooltip-inner">
-            Some tooltip text!
-        </div>
-    </div>
+</div>
 
     <!-- Modal HTML -->
     <div id="myModal" class="modal fade">
@@ -299,9 +275,7 @@ if (is_dir($dir)){
                         </div>
                         <div class="form-group">
                             <label for="nachricht" class="control-label">Nachricht (max. 250 Zeichen):</label>
-                            <input maxlength="250" class="form-control" id="nachricht"
-                                   value="Der Absender möchte folgende Daten mit Ihnen teilen: $_POST["
-                                   share_info"]</input>
+                            <textarea maxlength="250" class="form-control" id="nachricht">Der Absender möchte folgende Daten mit Ihnen teilen: https://mars.iuk.hdm-stuttgart.de/~dm082/phptest/<?php echo $placeoffile; ?></textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary">Senden</button>
@@ -314,85 +288,10 @@ if (is_dir($dir)){
     </div>
 
 
-<a href="#">Open Popover</a>
-
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-
-<a href="#">Open Popover 2</a>
-
-
-
-
 </body>
 </html>
 
 
-
-
-
-
-// nochmal neu
-
-
-
-<?php
-session_start();
-
-include("connection.php");
-$directorywert = md5($_SESSION['email']);
-$dir = "uploads/$directorywert/";
-
-// Check die Verbindung
-
-if ($_SESSION['loggedin'] != 1) {
-    // Wenn der User die Session nicht auf 1 hat, wird er auf die Loginseite zur�ckgeleitet
-    header("Location: loginsite.html");
-    exit;
-}
-
-if (isset($_SESSION['loggedin'])) {
-    //echo "Session-Email:". ($_SESSION['email']. "<br/>");
-}
-
-// Lesbare Zahlen f�r "Gr��e"
-
-function readablesize($bytes, $precision = 1)
-{
-    $kilobyte = 1024;
-    $megabyte = $kilobyte * 1024;
-    $gigabyte = $megabyte * 1024;
-
-    if (($bytes >= 0) && ($bytes < $kilobyte)) {
-        return $bytes . ' B';
-// Ist die Bytezahl gr��er oder gleich als $kilobyte? & ist die Bytezahl gleichzeitig kleiner als Megabyte?
-    } elseif (($bytes >= $kilobyte) && ($bytes < $megabyte)) {
-        return round($bytes / $kilobyte, $precision) . ' KB';
-
-    } elseif (($bytes >= $megabyte) && ($bytes < $gigabyte)) {
-        return round($bytes / $megabyte, $precision) . ' MB';
-
-    } elseif ($bytes >= $gigabyte) {
-        return round($bytes / $gigabyte, $precision) . ' GB';
-    } else {
-        return $bytes . ' B';
-    }
-}
-
-
-// Open a directory, and read its contents
-/* L�uft, kann aber bald gel�scht werden da unten vorhanden
-if (is_dir($dir)){
-    if ($dh = opendir($dir)){
-        while (($file = readdir($dh)) !== false){
-            if($file != "." && $file != ".."){
-            echo "<a href='$dir$file'>filename:" . $file . "</a><br>";
-            }
-        }
-        closedir($dh);
-    }
-}
-*/
-
-?>
+<!-- Kommentar -->
 
 
