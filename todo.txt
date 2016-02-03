@@ -3,13 +3,12 @@
     -- Passwort ändern      #DONE
 - Sortieren der Ergebnisse bei Showuploads
 - Bild für mehrere Geräte verfügbar machen + Blauer Hintergrund läschen
-- umbenennen und teilen bei showuploads
-- Registrieren button löschen
+
+
 
 - schöner avatar bei neu erstelltem Profil
 RESPONSIVE
 SICHERHEIT!!!
+HTDOCS
 
-
-
-
+ordnerupload

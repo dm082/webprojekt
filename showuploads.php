@@ -142,9 +142,11 @@ if (is_dir($dir)){
 
     <!-- Erscheinen des Linkinfo Felds-------------------------------->
     <script>
-        $(document).ready(function(){
-            $('[data-toggle="popover"]').popover();
-            $.fn.editable.defaults.mode = 'inline';
+        $(document).ready(function() {
+            $(document).on('click', '.linkinfo', function (e) {
+                $('[data-toggle="popover"]').popover();
+                $.fn.editable.defaults.mode = 'inline';
+            })
         });
     </script>
 
@@ -158,11 +160,11 @@ if (is_dir($dir)){
         });
     </script>
 
-    <!-- Umbennen des Dateinamens - Inline! -->
+
+    <!-- Umbennen und Neuladen des Dateinamens - Inline! ------------------>
     <script>
         $(function() {
             $.fn.editable.defaults.mode = 'inline';
-
             $(document).on('click', '.edit', function (e) {
                 e.stopPropagation();
                 $(this).parent().prev('td').prev('td').prev('td').find('a').editable('toggle');
@@ -175,7 +177,10 @@ if (is_dir($dir)){
                 $.ajax({
                     url: "rename.php",
                     type: 'POST',
-                    data: {value: value,pk: pkk, name}
+                    data: {value: value,pk: pkk, name},
+                    success: function(){
+                        $("#nachricht").load("showuploads.php #nachricht");
+                    }
                     /* LÖSCHEN DIESES ABSCHNITTS
                     type:  'text',
                     pk:    1,
@@ -190,9 +195,18 @@ if (is_dir($dir)){
             $(document).on('click', '.editable-submit', function (e) {
                 $("#userfiles").load("showuploads.php #userfiles");
             });
-
         });
     </script>
+
+<script>
+    $(document).on("click", ".share", function () {
+        var myBookId = $(this).attr('id');
+        $(".modal-body #bookId").val( myBookId );
+        // As pointed out in comments,
+        // it is superfluous to have to manually call the modal.
+        // $('#addBookDialog').modal('show');
+    });
+</script>
 
 
 </head>
@@ -235,15 +249,15 @@ if (is_dir($dir)){
                         $size = filesize($dir . $file);
                         $prettysize = readablesize($size);
                         $placeoffile = ($dir . $file);
+                        $fullpath = 'https://mars.iuk.hdm-stuttgart.de/~dm082/phptest/'.$placeoffile;
                         echo("
                             <tr class='active'>
-                            <td class='dateiname'><!--<input class='testtt' type='text'>--><a id='name' class='publicname-change' data-name='$file' data-pk='$placeoffile' data-type='text' href='$placeoffile'><span>$file</span></a></td>
+                            <td class='dateiname'><a id='name' class='publicname-change' data-name='$file' data-pk='$placeoffile' data-type='text' href='$placeoffile'><span>$file</span></a></td>
                             <td>$extension</td>
                             <td>$prettysize</td>
-                            <!-- <td><input type='text' placeholder='Neuer Dateiname'><i id=$placeoffile class='senden fa fa-paper-plane'></i> </td> -->
                             <td class=''><a class='edit'><i class=' fa fa-pencil-square-o'></i></a></td>
                             <td><a href='#' title='Ihr Link' data-toggle='popover' data-trigger='click' data-placement='left' data-content='https://mars.iuk.hdm-stuttgart.de/~dm082/phptest/$placeoffile'><i id=$placeoffile class='linkinfo fa fa-link'></i></a></td>
-                            <td><a href='#myModal'  data-toggle=\"modal\"><i id=$placeoffile class='share fa fa-share'></i></a></td>
+                            <td><a href='#myModal'  data-toggle=\"modal\"><i id='$fullpath' class='share fa fa-share'></i></a></td>
                             <td><a><i id=$placeoffile class='delete fa fa-trash'></i></a></td>
                             </tr>");
                     }
@@ -276,8 +290,8 @@ if (is_dir($dir)){
                             <input type="text" required maxlength="40" class="form-control" id="betreff">
                         </div>
                         <div class="form-group">
-                            <label for="nachricht" class="control-label">Nachricht (max. 250 Zeichen):</label>
-                            <textarea maxlength="250" class="form-control" id="nachricht">Der Absender möchte folgende Daten mit Ihnen teilen: https://mars.iuk.hdm-stuttgart.de/~dm082/phptest/<?php echo $placeoffile; ?></textarea>
+                            <label for="bookId" class="control-label">Nachricht (max. 250 Zeichen):</label>
+                            <input type="text" class="form-control" id="bookId" name="bookId" value="lolo"/>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary">Senden</button>
