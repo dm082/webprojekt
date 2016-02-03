@@ -7,7 +7,7 @@ include ("connection.php");
 
 
     if ($_SESSION['loggedin'] != 1) {
-        // Wenn der User die Session nicht auf 1 hat, wird er auf die Loginseite zurückgeleitet
+        // Wenn der User die Session nicht auf 1 hat, wird er auf die Loginseite zurï¿½ckgeleitet
         header("Location: loginsite.html");
         exit;
     }
@@ -31,7 +31,6 @@ echo "<br/>Das ist der Pfad $emailvergleich <br/>";
 //md5 decypt
 $emailcheck= md5($email);
 echo $emailcheck. "<br/>";
-
 ?>
 
 <!DOCTYPE html>

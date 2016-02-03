@@ -69,7 +69,7 @@ if (is_dir($dir)){
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
-    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-editable.min.js"></script>
     <meta charset="UTF-8">
@@ -102,44 +102,6 @@ if (is_dir($dir)){
             });
         });
     </script>
-
-   <!--
-   <script>
-        /* Umbenennen ------------------------------------------------------------*/
-        $(document).ready(function () {
-            $(".senden").click(function(){
-                var neuername = $(this).prev('input').val();
-                alert(neuername);
-                var element = $(this);
-                var share_id = element.attr("id");
-                var info =  share_id;
-                var share_info = 'http://mars.iuk.hdm-stuttgart.de/~dm082/phptest/' + share_id;
-                $.ajax({
-                    type: "POST",
-                    url: "rename.php",
-                    data: {info: info, neuername:neuername} ,
-                    success: function () {
-                    }
-                });
-                return false;
-            });
-        });
-        $(document).ready(function () {
-            $(".senden").click(function () {
-                $("#tablecontainer").load("showuploads.php");
-            })
-        });
-        /* Insert Field */
-        $(document).ready(function () {
-            $(".linkinfo").click(function () {
-                $(".testtt").toggleClass("visible");
-            })
-        });
-
-
-
-    </script> -->
-
     <!-- Erscheinen des Linkinfo Felds-------------------------------->
     <script>
         $(document).ready(function() {
@@ -181,14 +143,6 @@ if (is_dir($dir)){
                     success: function(){
                         $("#nachricht").load("showuploads.php #nachricht");
                     }
-                    /* LÖSCHEN DIESES ABSCHNITTS
-                    type:  'text',
-                    pk:    1,
-                    name:  'username',
-                    url:   'rename.php',
-                    title: 'Enter username',
-                    send: 'always',
-                    toggle: 'manual'*/
                 });
             });
 
@@ -200,18 +154,16 @@ if (is_dir($dir)){
 
 <script>
     $(document).on("click", ".share", function () {
-        var myBookId = $(this).attr('id');
-        $(".modal-body #bookId").val( myBookId );
-        // As pointed out in comments,
-        // it is superfluous to have to manually call the modal.
-        // $('#addBookDialog').modal('show');
+        var newId = $(this).attr('id');
+        $(".modal-body #modalshare").val( newId );
     });
 </script>
 
 
+
+
 </head>
 <body>
-
 <div>
     <div class="nav">
         <div class="container">
@@ -235,7 +187,7 @@ if (is_dir($dir)){
         <thead>
         <tr>
             <th>Filename</th>
-            <th class="bitte" id="hmm">Type</th>
+            <th >Type</th>
             <th>Size</th>
         </tr>
         </thead>
@@ -290,8 +242,8 @@ if (is_dir($dir)){
                             <input type="text" required maxlength="40" class="form-control" id="betreff">
                         </div>
                         <div class="form-group">
-                            <label for="bookId" class="control-label">Nachricht (max. 250 Zeichen):</label>
-                            <input type="text" class="form-control" id="bookId" name="bookId" value="lolo"/>
+                            <label for="modalshare" class="control-label">Nachricht (max. 250 Zeichen):</label>
+                            <input type="text" class="form-control" id="modalshare" name="modalshare" value="lolo"/>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary">Senden</button>
@@ -307,7 +259,5 @@ if (is_dir($dir)){
 </body>
 </html>
 
-
-<!-- Kommentar -->
 
 

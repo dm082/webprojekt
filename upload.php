@@ -49,6 +49,7 @@ if ($uploadOk == 0) {
 // Wenn alles passt, Datei hochladen
 } else {
     if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+        chmod($target_file, 0600);
         echo "Die Datei ". basename($olduserfile). " wurde erfolgreich hochgeladen.<br/>";
         echo "Weiter zu deinen <a href='showuploads.php'>Dateien.</a>";
     } else {
