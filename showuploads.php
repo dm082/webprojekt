@@ -150,6 +150,13 @@ if (is_dir($dir)){
                 $("#userfiles").load("showuploads.php #userfiles");
             });
         });
+
+
+
+
+
+
+
     </script>
 
 <script>
@@ -172,8 +179,8 @@ if (is_dir($dir)){
             </ul>
             <ul class="pull-right">
                 <li><a href="uploadseitee.html">Upload</a></li>
-                <li><a href="profil.php">Profil</a></li>
                 <li><a href="showuploads.php">&Uuml;bersicht</a></li>
+                <li><a href="profil.php">Profil</a></li>
                 <li><a href="logout.php">Logout</a></li>
             </ul>
         </div>
