@@ -136,7 +136,7 @@ if (is_dir($dir)){
                 $.ajax({
                     type: "POST",
                     url: "test.php",
-                    data: share_info,
+                    data: {info:share_info},
                     success: function() {
 
                     }

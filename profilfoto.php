@@ -22,11 +22,11 @@ if ($_POST['upload']) {
     $filetype = pathinfo($target_file, PATHINFO_EXTENSION);
     $filesize = $_FILES['bild']['size'];
 
-    echo $bildname . "<br>";
-    echo $bildtmp . "<br>";
-    echo $filetype . "<br>";
-    echo $filesize . "<br>";
-    echo $dir_zusatz;
+   // echo $bildname . "<br>";
+    // echo $bildtmp . "<br>";
+    //echo $filetype . "<br>";
+    //echo $filesize . "<br>";
+    //echo $dir_zusatz;
 
 
     if ($bildname != '' AND $bildtmp != '') {    //prüft ob Bildname und Speicherort befüllt sind
@@ -36,12 +36,13 @@ if ($_POST['upload']) {
             && $filetype != "gif" && $filetype !="JPG" && $filetype !="JPEG"
             && $filetype !="GIF" && $filetype !="PNG"
         ) {
-            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            header("Location: fehlerdateityp.html");
             $error = true;
         }
 // Check file size
-        if ($filesize > 524288000) {
-            echo "Sorry, your file is too large.";
+        if ($filesize > 10485760) {
+            header("Location: fehlerdateigroesse.html");
+
             $error = true;
         }
     }

@@ -20,7 +20,7 @@ if ($pw == $pw2)
         $secret_salt = "topsecretsalt";
         $salted_password = $secret_salt . $pw;
         $password_hash = hash('sha256', $salted_password);
-        $profilbildpfad = "http://placehold.it/200x200";
+        $profilbildpfad = "images/1454464190_ninja-background.png";
 
      //   echo "Gl&uuml;ckwunsch zur Registrierung <br /> ";
     //    echo "<a href='loginsite.html'>Einloggen</a><br/>";

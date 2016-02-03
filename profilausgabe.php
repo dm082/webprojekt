@@ -34,10 +34,9 @@ $sql->execute($array);
 
 
 while ($row = $sql->fetch()) {
-    echo 'Userid: ' . $row['userid'] . '<br />';
-    echo 'Vorname: ' . $row['vorname'] . '<br />';
-    echo 'Nachname: ' . $row['nachname'] . '<br />';
-    echo 'E-Mailadresse: ' . $row['email'] . '<br />';
+  //  echo 'Userid: ' . $row['userid'] . '<br />';
+    echo '<i class="fa fa-user"></i></i>&nbsp;&nbsp;' . $row['vorname'] ."&nbsp;" . $row['nachname'] .'<br />';
+    echo '<i class="fa fa-envelope"></i></i>&nbsp;&nbsp;'. $row['email'] . '<br />';
 };
 
 ?>
