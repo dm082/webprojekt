@@ -158,39 +158,41 @@ if (is_dir($dir)){
         });
     </script>
 
-
     <!-- Umbennen des Dateinamens - Inline! -->
     <script>
-        $(function(){
+        $(function() {
             $.fn.editable.defaults.mode = 'inline';
 
-            $(document).on('click', '.editable-submit', function(e){
+            $(document).on('click', '.edit', function (e) {
+                e.stopPropagation();
+                $(this).parent().prev('td').prev('td').prev('td').find('a').editable('toggle');
+            });
+
+            $('publicname-change').editable();
+            $(document).on('click', '.editable-submit', function () {
+                var pkk = $(this).closest('td').find('a').attr('data-pk');
+                var value = $('.input-sm').val();
+                $.ajax({
+                    url: "rename.php",
+                    type: 'POST',
+                    data: {value: value,pk: pkk, name}
+                    /* LÖSCHEN DIESES ABSCHNITTS
+                    type:  'text',
+                    pk:    1,
+                    name:  'username',
+                    url:   'rename.php',
+                    title: 'Enter username',
+                    send: 'always',
+                    toggle: 'manual'*/
+                });
+            });
+
+            $(document).on('click', '.editable-submit', function (e) {
                 $("#userfiles").load("showuploads.php #userfiles");
             });
 
-            $(document).on('click', '.edit', function(e){
-                e.stopPropagation();
-                $(this).parent().prev('td').prev('td').prev('td').find('a').editable('toggle');
-
-                $('.publicname-change').editable({
-                    type: 'text',
-                    name: 'share_id',
-                    url: 'rename.php',
-                    pk: 1,
-                    placement: 'top',
-                    send: 'always',
-                    title: 'Enter public name',
-                    toggle: 'manual',
-                    success: function(){
-                        $("#userfiles").load("showuploads.php #userfiles");
-                    }
-                })
-            });
-
-
-            });
+        });
     </script>
-
 
 
 </head>
@@ -219,7 +221,7 @@ if (is_dir($dir)){
         <thead>
         <tr>
             <th>Filename</th>
-            <th class="bitte">Type</th>
+            <th class="bitte" id="hmm">Type</th>
             <th>Size</th>
         </tr>
         </thead>
@@ -235,7 +237,7 @@ if (is_dir($dir)){
                         $placeoffile = ($dir . $file);
                         echo("
                             <tr class='active'>
-                            <td class='dateiname'><!--<input class='testtt' type='text'>--><a id='name' class='publicname-change' data-pk='$placeoffile' data-type='text' href='$placeoffile'><span>$file</span></a></td>
+                            <td class='dateiname'><!--<input class='testtt' type='text'>--><a id='name' class='publicname-change' data-name='$file' data-pk='$placeoffile' data-type='text' href='$placeoffile'><span>$file</span></a></td>
                             <td>$extension</td>
                             <td>$prettysize</td>
                             <!-- <td><input type='text' placeholder='Neuer Dateiname'><i id=$placeoffile class='senden fa fa-paper-plane'></i> </td> -->

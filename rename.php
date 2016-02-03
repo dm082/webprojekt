@@ -19,12 +19,16 @@ $namenswunsch = $_POST['value'];
 /* Zerlegen der Variable in Name und Endung*/
 $path_parts = pathinfo($altername);
 $nameohneendung = $path_parts['filename'];
+echo 'Das ist der Altename :'.$nameohneendung."<br/>";
 $namenextension = $path_parts['extension'];
+echo 'Das ist die Extension :'.$namenextension."<br/>";
 
 /*Zerlegen des Namenswunsches in Variable und Endung um Endung nicht zu berücksichtigen */
 $path_parts = pathinfo($namenswunsch);
 $wunschname = $path_parts['filename'];
+echo 'Das ist der Wunschname :'.$wunschname."<br/>";
 $wunschendung = $path_parts['extension'];
+echo 'Das ist die Wunschendung :'.$wunschendung."<br/>";
 
 
 /* Hier werden Zeichen zum Schutz vor Komplikationen geändert*/
