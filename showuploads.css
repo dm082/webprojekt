@@ -28,7 +28,6 @@ td {
 #load {
     position:absolute;
     left:225px;
-    background-image:url(images/loading-bg.png);
     background-position:center;
     background-repeat:no-repeat;
     width:159px;
